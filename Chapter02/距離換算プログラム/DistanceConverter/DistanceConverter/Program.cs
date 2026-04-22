@@ -7,10 +7,10 @@ namespace DistanceConverter
         static void Main(string[] args){
 
             if (args.Length >= 1 && args[0] == "-tom"){
-                PrintMeterToFeetList(1, 10);
+                PrintMeterToFeetList(int.Parse(args[1]), int.Parse(args[2]));
             }
             else if (args.Length >= 1 && args[0] == "-tof"){
-                PrintFeetToMeterList(1, 10);
+                PrintFeetToMeterList(int.Parse(args[1]), int.Parse(args[2]));
             } else {
                 Console.WriteLine("引数エラー");
             }
