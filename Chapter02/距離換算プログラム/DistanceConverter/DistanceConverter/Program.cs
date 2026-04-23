@@ -21,29 +21,28 @@ namespace DistanceConverter
             }
         }
 
-            static void PrintMeterToFeetList(int start, int stop)
-            {
-                for (int feet = start; feet <= stop; feet++)
-                {
-                    double metre = MeterToFeet(feet);
+            static void PrintMeterToFeetList(int start, int stop){
+
+            for (int feet = start; feet <= stop; feet++){
+                double metre = FeetConvrter.ToMeter(feet);
                     Console.WriteLine($"{feet}ft = {metre:0.0000}m");
                 }
             }
-            static void PrintFeetToMeterList(int start, int stop)
-            {
-                for (int metre = start; metre <= stop; metre++)
-                {
-                    double feet = FeetToMeter(metre);
+        static void PrintFeetToMeterList(int start, int stop){
+
+            for (int metre = start; metre <= stop; metre++)
+{
+                    double feet = FeetConvrter.FeetMeter(metre);
                     Console.WriteLine($"{metre}m = {feet:0.0000}ft");
                 }
             }
-            static double MeterToFeet(double feet)
-            {
-                return feet * 0.3048;
-            }
-            static double FeetToMeter(double metre)
-            {
-                return metre / 0.3048;
-            }
+            //static double MeterToFeet(double feet)
+            //{
+            //    return feet * 0.3048;
+            //}
+            //static double FeetToMeter(double metre)
+            //{
+            //    return metre / 0.3048;
+            //}
         }
     }
