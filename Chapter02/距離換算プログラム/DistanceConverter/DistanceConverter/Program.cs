@@ -34,15 +34,7 @@ namespace DistanceConverter
 {
                     double feet = FeetConvrter.FeetMeter(metre);
                     Console.WriteLine($"{metre}m = {feet:0.0000}ft");
-                }
             }
-            //static double MeterToFeet(double feet)
-            //{
-            //    return feet * 0.3048;
-            //}
-            //static double FeetToMeter(double metre)
-            //{
-            //    return metre / 0.3048;
-            //}
         }
     }
+}
