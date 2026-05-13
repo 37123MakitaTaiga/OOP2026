@@ -5,13 +5,13 @@
             var songs = new List<Song>();   //コレクション
 
             while (true) {
-            Console.Write("曲名：");
-            string? artistname = Console.ReadLine();
-                if (artistname == "end") {
+                Console.Write("曲名：");
+                string? title = Console.ReadLine();
+                if (title == "end") {   //(title.Equals("end", StringComparison.CurrentCulture))はp131を参考に
                     break;
                 } else {
                     Console.Write("アーティスト名：");
-                    string? title = Console.ReadLine();
+                    string? artistname = Console.ReadLine();
 
                     Console.Write("演奏時間(秒)：");
                     string? seconds = Console.ReadLine();
