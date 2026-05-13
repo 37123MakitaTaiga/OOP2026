@@ -1,9 +1,9 @@
 ﻿namespace Exercise02 {
     internal class Program {
         static void Main(string[] args) {
-            PrintMeterTonchList(1, 10);
+            PrintMeterToInchList(1, 10);
         }
-            static void PrintMeterTonchList(int start, int stop) {
+            static void PrintMeterToInchList(int start, int stop) {
 
                 for (int inch = start; inch <= stop; inch++) {
                     double metre = ToMeter(inch);
