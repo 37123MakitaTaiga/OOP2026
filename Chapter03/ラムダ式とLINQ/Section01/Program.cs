@@ -4,21 +4,26 @@ namespace Section01 {
     internal class Program {
 
         static void Main(string[] args) {
-            var numbers = new[] { 5, 3, 9, 6, 7, 5, 8, 1, 0, 5, 10, 4 };
+            var cities = new List<string> {
+                "Tokyo",
+                "New Delhi",
+                "Bangkok",
+                "London",
+                "Paris",
+                "Berlin",
+                "Canberra",
+                "Hong Kong",
+            };
 
-            var count = Count(numbers, n => n % 4 == 0 || n % 5 == 0);
-            Console.WriteLine(count);
+            //以下の条件を満たすものが存在するか調べる
+            //・文字数が6文字以上
+            //・oを含む
+            //・最後にnが入る
+
+            var exists = cities.Exists(s => s.Length >= 6 && s.Contains('o') && s.EndsWith('n'));
+            Console.WriteLine(exists);
+
         }
 
-        static int Count(int[]numbers, Predicate<int> judge) {
-
-            var count = 0;
-            foreach (var n in numbers) {
-                if (judge(n) ==true) {
-                    count++;
-                }
-            }
-            return count;
-        }
     }
 }
