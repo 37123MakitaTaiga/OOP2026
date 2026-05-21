@@ -30,8 +30,8 @@ namespace Exercise01 {
         }
 
         private static void Exercise3(List<int> numbers) {
-            IEnumerable<int> ints = numbers.Where(s => s >= 50);
-            foreach (var s in ints) {
+            var query = numbers.Where(s => s >= 50);
+            foreach (var s in query) {
                 Console.WriteLine(s);
             }
         }
