@@ -25,6 +25,7 @@
 
         private static void Exercise2_1(List<string> cities) {
             //できたらGitのコメント「問題3.2.1完成」
+            Console.Write("検索");
             var name = Console.ReadLine();
             int index = cities.FindIndex(s => s == name);
             Console.WriteLine(index);
@@ -46,7 +47,12 @@
 
         private static void Exercise2_4(List<string> cities) {
             //できたらGitのコメント「問題3.2.4完成」
-
+            var str = cities
+                .Where(s => s.StartsWith('B'))
+                .Select(s => s.Length);
+            foreach (var s in str) {
+                Console.WriteLine(s);
+            }
         }
     }
 }
