@@ -25,10 +25,16 @@
 
         private static void Exercise2_1(List<string> cities) {
             //できたらGitのコメント「問題3.2.1完成」
-            Console.Write("検索");
-            var name = Console.ReadLine();
-            int index = cities.FindIndex(s => s == name);
-            Console.WriteLine(index);
+            while (true) {
+                Console.Write("都市名を入力。空行で終了:");
+                var name = Console.ReadLine();
+                if (string.IsNullOrEmpty(name)) {
+                    break;
+                }
+                    int index = cities.FindIndex(s => s == name);
+                    Console.WriteLine(index);
+               
+            }
         }
 
         private static void Exercise2_2(List<string> cities) {
@@ -49,9 +55,9 @@
             //できたらGitのコメント「問題3.2.4完成」
             var str = cities
                 .Where(s => s.StartsWith('B'))
-                .Select(s => s.Length);
-            foreach (var s in str) {
-                Console.WriteLine(s);
+                .Select(s => new { s,s.Length });
+            foreach (var data in str) {
+                Console.WriteLine(data.s + ":" + data.Length + "文字");
             }
         }
     }
