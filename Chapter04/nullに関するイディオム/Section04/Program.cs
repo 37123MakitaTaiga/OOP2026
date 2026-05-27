@@ -35,6 +35,19 @@
             int? amount = sale?.Amount;
             Console.WriteLine("売上高: " + amount);
             #endregion
+
+            #region 2つの要素を入れ替える
+            int a = 10;
+            int b = 20;
+            int c = 30;
+            Console.Write("入れ替え前：");
+            Console.WriteLine("a = " + a + " b = " + b + " c = " + c);
+
+            (b, c, a, int d) = (10, 20 ,30 ,40); //入れ替え
+            
+            Console.Write("入れ替え後：");
+            Console.WriteLine("a = " + a + " b = " + b + " c = " + c);
+            #endregion
         }
 
         private static string? GetMessage(string code) {
