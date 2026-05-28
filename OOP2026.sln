@@ -57,6 +57,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "演習問題", "演習問�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise01", "Chapter04\演習問題\Exercise01\Exercise01.csproj", "{10F6CF4E-B5D3-4E6A-946F-B1C4200E6E1E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise02", "Chapter04\演習問題\Exercise02\Exercise02\Exercise02.csproj", "{613BB822-8758-4C9A-824B-63089EA96674}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -119,6 +121,10 @@ Global
 		{10F6CF4E-B5D3-4E6A-946F-B1C4200E6E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10F6CF4E-B5D3-4E6A-946F-B1C4200E6E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10F6CF4E-B5D3-4E6A-946F-B1C4200E6E1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{613BB822-8758-4C9A-824B-63089EA96674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{613BB822-8758-4C9A-824B-63089EA96674}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{613BB822-8758-4C9A-824B-63089EA96674}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{613BB822-8758-4C9A-824B-63089EA96674}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -146,6 +152,7 @@ Global
 		{1CEDC68A-236A-4567-9832-A6D033B342E2} = {2E44FE88-3707-479D-B45A-6676DD99A9FC}
 		{A3ECA6F0-6EE2-43B9-A9A7-80D1BD13758D} = {21455EF4-1A12-4F77-990D-074A66EC7E80}
 		{10F6CF4E-B5D3-4E6A-946F-B1C4200E6E1E} = {A3ECA6F0-6EE2-43B9-A9A7-80D1BD13758D}
+		{613BB822-8758-4C9A-824B-63089EA96674} = {A3ECA6F0-6EE2-43B9-A9A7-80D1BD13758D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {62FAEC1C-9CF9-451E-B725-08BC1EBE2864}
