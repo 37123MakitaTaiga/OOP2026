@@ -13,15 +13,15 @@
             //if-else文を使用
             Console.Write("値を入力：");
             string? inputNum = Console.ReadLine();
-            if (int.TryParse(inputNum, out var num)) {
+            if (int.TryParse(inputNum, out var num)) {  //整数以外は「入力に誤りがあります」と出力
                 if (num < 0) {
                     Console.WriteLine(num);
                 } else if (num < 100) {
-                    Console.WriteLine(num * 2);
+                    Console.WriteLine(num * 2); //0以上100未満
                 } else if (num < 500) {
-                    Console.WriteLine(num * 3);
+                    Console.WriteLine(num * 3); //100以上500未満
                 } else {
-                    Console.WriteLine(num);
+                    Console.WriteLine(num);     //500以上
                 }
             } else {
                 Console.WriteLine("入力に誤りがあります");
@@ -54,7 +54,6 @@
 
         private static void Exercise3() {
             //switch式を使用
-
             Console.Write("値を入力：");
             string? inputNum = Console.ReadLine();
 
@@ -68,7 +67,7 @@
 
                 Console.WriteLine(result);
             } else {
-                Console.WriteLine("エラー：整数を入力してください");
+                Console.WriteLine("入力に誤りがあります");
             }
         }
     }
