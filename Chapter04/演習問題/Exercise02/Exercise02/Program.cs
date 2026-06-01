@@ -8,26 +8,26 @@
             Console.WriteLine("\n --- 4.2.3 ---");
             Exercise3();
         }
-
+        //p89～90を参考にする
         private static void Exercise1() {
             //if-else文を使用
             Console.Write("値を入力：");
             string? inputNum = Console.ReadLine();
             if (int.TryParse(inputNum, out var num)) {  //整数以外は「入力に誤りがあります」と出力
-                if (num < 0) {
+                if (num < 0) {                  //0未満
                     Console.WriteLine(num);
-                } else if (num < 100) {
-                    Console.WriteLine(num * 2); //0以上100未満
-                } else if (num < 500) {
-                    Console.WriteLine(num * 3); //100以上500未満
-                } else {
-                    Console.WriteLine(num);     //500以上
+                } else if (num < 100) {         //0以上100未満
+                    Console.WriteLine(num * 2); 
+                } else if (num < 500) {         //100以上500未満
+                    Console.WriteLine(num * 3); 
+                } else {                        //500以上
+                    Console.WriteLine(num);     
                 }
             } else {
                 Console.WriteLine("入力に誤りがあります");
             }
         }
-
+        
         private static void Exercise2() {
             //switch文を使用
             Console.Write("値を入力：");
@@ -58,7 +58,7 @@
             string? inputNum = Console.ReadLine();
 
             if (int.TryParse(inputNum, out int num)) {
-                int result = num switch {
+                var result = num switch {
                     < 0 => num,
                     < 100 => num * 2,
                     < 500 => num * 3,
