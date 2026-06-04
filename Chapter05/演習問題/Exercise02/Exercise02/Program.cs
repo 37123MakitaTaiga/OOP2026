@@ -15,20 +15,36 @@ namespace Exercise02 {
             Console.WriteLine("5.2.2");
             Exercise2(ymCollection);
 
-            Console.WriteLine("5.2.4");
+            Console.WriteLine("\n5.2.4");
             Exercise4(ymCollection);
 
 
-            Console.WriteLine("5.2.5");
+            Console.WriteLine("\n5.2.5");
             Exercise5(ymCollection);
         }
 
         private static void Exercise2(YearMonth[] ymCollection) {
+            foreach(var s in ymCollection) {
+                Console.WriteLine(s);
+            }
+        }
 
+        private static YearMonth? FindFrst21C(YearMonth[] ymCollection) {
+            foreach (var ym in ymCollection) {
+                if (ym.Is21Century) {
+                    return ym;
+                }
+            }
+                    return null;
         }
 
         private static void Exercise4(YearMonth[] ymCollection) {
-
+            var ym = FindFrst21C(ymCollection);
+            if(ym == null) {
+                Console.WriteLine("21世紀のデータはありません");
+            } else {
+                Console.WriteLine(ym.Year + "年");
+            }
         }
 
         private static void Exercise5(YearMonth[] ymCollection) {
