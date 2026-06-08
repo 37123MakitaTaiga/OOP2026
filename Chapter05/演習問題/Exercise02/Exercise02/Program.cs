@@ -45,13 +45,13 @@ namespace Exercise02 {
             } else {
                 Console.WriteLine(ym.Year + "年");
             }
+            
         }
 
         private static void Exercise5(YearMonth[] ymCollection) {
-            var ym = ymCollection.Select(s => s.AddOneMonth());
-            foreach (var n in ym) {
-                Console.WriteLine(n);
-            }
+            var array = ymCollection.Select(s => s.AddOneMonth()).ToArray();
+            Exercise2(array);
+        
         }
     }
 }
