@@ -38,7 +38,8 @@
         }
 
         private static void Exercise4(string text) {
-
+            var count = text.Split(' ').Count();
+            Console.WriteLine("単語数："+ count);
         }
 
         private static void Exercise5(string text) {
