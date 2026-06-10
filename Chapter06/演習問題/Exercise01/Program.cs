@@ -11,12 +11,12 @@ namespace Exercise01 {
 
             var cultureInfo = new CultureInfo("ja-JP");
 
-            if (String.Compare(str1, str2, cultureInfo,
-                                    CompareOptions.IgnoreWidth | CompareOptions.IgnoreCase) == 0) {
+            if (String.Compare(str1, str2, ignoreCase:true) == 0) {
                 Console.WriteLine("等しい");
             } else {
                 Console.WriteLine("等しくない");
             }
+
         }
     }
 }
