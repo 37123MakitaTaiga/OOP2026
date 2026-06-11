@@ -29,7 +29,11 @@
         }
 
         private static void Exercise2(string text) {
-            var replaced = text.Replace("big", "small");
+            Console.Write("検索");
+            var str1 = Console.ReadLine();
+            Console.Write("置換");
+            var str2 = Console.ReadLine();
+            var replaced = text.Replace(str1, str2);
             Console.WriteLine(replaced);
         }
 
@@ -50,23 +54,35 @@
             var str = text.ToLower().Replace(" ", "");
 
             //辞書（ディクショナリ）を使った集計
-            //var alphDicCount = Enumerable.Range('a', 26).
-            //    ToDictionary(num => ((char)num).ToString(), num => 0);
+            var alphDicCount = Enumerable.Range('a', 26).
+                ToDictionary(num => ((char)num), num => 0);
 
-            var dict = new SortedDictionary<char, int>();
+            //var dict = new SortedDictionary<char, int>();
             foreach (var c in str) {
-                if (dict.ContainsKey(c))
-                    dict[c]++;      //登録されている場合
-                else
-                    dict[c] = 1;    //未登録の場合
+                //if (alphDicCount.ContainsKey(c))
+                    alphDicCount[c]++;      //登録されている場合
+                //else
+                //    alphDicCount[c] = 1;    //未登録の場合
             }
-            foreach (var word in dict) {
+            foreach (var word in alphDicCount) {
                 Console.WriteLine(word.Key + ":" + word.Value);
             }
+            Console.WriteLine();    //改行
             //配列を用いた集計
+            var array = Enumerable.Range(0, 26).ToArray();
+            foreach(var alph in str) {
+                array[alph - 'a']++;
+            }
+            for (char ch = 'a'; ch <= 'z'; ch++) {
+                Console.WriteLine($"{ch}:{array[ch - 'a']}");
+            }
 
-
+            Console.WriteLine();    //改行
             //'a'から順にカウントして集計
+            for (char ch = 'a'; ch <= 'z'; ch++) {
+                Console.WriteLine($"{ch}:{str.Count(s => s == ch)}");
+            }
+
         }
     }
 }
