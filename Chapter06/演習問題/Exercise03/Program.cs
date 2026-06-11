@@ -43,6 +43,11 @@
         }
 
         private static void Exercise5(string text) {
+            
+            var str = text.Split(' ').Where(s => s.Length <= 4);
+            foreach (var s in str) {
+                Console.WriteLine(s);
+            }
 
         }
 
