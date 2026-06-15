@@ -1,4 +1,6 @@
-﻿namespace Exercise03 {
+﻿using System.Text;
+
+namespace Exercise03 {
     internal class Program {
         static void Main(string[] args) {
             var text = "Jackdaws love my big sphinx of quartz";
@@ -38,7 +40,12 @@
         }
 
         private static void Exercise3(string text) {
-
+            String[] words = text.Split(' ');
+            var sb = new StringBuilder();
+            foreach(var word in text) {
+                sb.Append(word);
+            }
+            Console.WriteLine(sb + ".");
         }
 
         private static void Exercise4(string text) {
