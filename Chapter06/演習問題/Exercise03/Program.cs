@@ -40,11 +40,15 @@ namespace Exercise03 {
         }
 
         private static void Exercise3(string text) {
-            String[] words = text.Split(' ');
-            var sb = new StringBuilder();
-            foreach(var word in text) {
+            String[] array = text.Split(' ');
+            var sb = new StringBuilder(array[0]);
+
+            foreach (var word in array.Skip(1)) {
+                sb.Append(' ');
                 sb.Append(word);
             }
+            //var space = ' ';
+            //var result = String.Join(space, words);
             Console.WriteLine(sb + ".");
         }
 
