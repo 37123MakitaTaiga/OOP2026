@@ -31,9 +31,14 @@ namespace Exercise01 {
         }
 
         private static void Exercise3(int[] numbers) {
+            Console.WriteLine("3桁の数値文字列");
+            var s3 = numbers.Select(n => n.ToString("000")).ToList();
+            s3.ForEach(Console.WriteLine);
+            
         }
 
         private static void Exercise4(int[] numbers) {
+            
         }
 
         private static void Exercise5(int[] numbers) {
