@@ -43,6 +43,8 @@ namespace Exercise01 {
         }
 
         private static void Exercise5(int[] numbers) {
+            var distinct = numbers.Distinct();
+            Console.WriteLine(distinct.Count(c => c > 10));
         }
     }
 }
