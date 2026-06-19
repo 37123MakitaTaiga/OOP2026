@@ -49,12 +49,14 @@ namespace Exercise02 {
         }
 
         private static void Exercise3(List<Book> books) {
-            var average = books.Average(s => s.Pages);
+            var average = books.Average(n => n.Pages);
             Console.WriteLine(average);
         }
 
         private static void Exercise4(List<Book> books) {
-
+            var title = books.FirstOrDefault(n => n.Price >= 4000);
+                Console.WriteLine(title.Title);
+        
         }
 
         private static void Exercise5(List<Book> books) {
