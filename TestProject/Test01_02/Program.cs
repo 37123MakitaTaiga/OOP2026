@@ -1,4 +1,6 @@
-﻿namespace Test01_02 {
+﻿using System;
+
+namespace Test01_02 {
     internal class Program {
         static void Main(string[] args) {
             var numbers = new[] { 12, 87, 94, 14, 53, 20, 40, 35, 76, 91, 31, 17, 48 };
@@ -61,21 +63,33 @@
         //問題１　合計値を表示（式形式で記述せよ）
         //　　　　出力結果【618】
         private static void Exercise01(int[] numbers) {
-
+            int num = 0;
+            for (int i = 0; i < numbers.Length; i++) {
+                num = numbers[i] + num;
+            }
+            Console.WriteLine(num);
         }
 
 
         //問題２　偶数の最大値を表示（式形式で記述せよ）
         //　　　　出力結果【94】
         private static void Exercise02(int[] numbers) {
-
+            //var max = 0;
+            //for(int i = 0; i < numbers.Length; i++) {
+            //    if (0 == numbers[i] % 2) {
+                    
+            //    }
+            //}
         }
 
 
         //問題３　昇順に並べて表示（遅延実行とする）
         //　　　　出力結果【12 14 17 20 31 35 40 48 53 76 87 91 94】
         private static void Exercise03(int[] numbers) {
-            
+            var order = numbers.Order();
+            foreach(var number in order) {
+                Console.Write(number+",");
+            }
         }
 
         //問題４　10以上50以下の数字のみを表示（即時実行でも可とする）
