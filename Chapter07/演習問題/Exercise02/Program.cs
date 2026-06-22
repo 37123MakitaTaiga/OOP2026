@@ -39,7 +39,7 @@ namespace Exercise02 {
         private static void Exercise1(List<Book> books) {
             var bookTitle = books.Where(s => s.Title.Contains("ワンダフル・C#ライフ"));
             foreach (var book in bookTitle) {
-                Console.Write($"{book.Price},{book.Pages}");
+                Console.Write($"{book.Price}：{book.Pages}");
             }
         }
 
@@ -60,7 +60,8 @@ namespace Exercise02 {
         }
 
         private static void Exercise5(List<Book> books) {
-            var maxpage = books.Where(n => n.Price < 4000).Max(m => m.Pages);
+            var maxpage = books.Where(n => n.Price < 4000)
+                               .Max(m => m.Pages);
             Console.WriteLine(maxpage);
         }
 
@@ -68,13 +69,17 @@ namespace Exercise02 {
             var pages = books.Where(n => n.Pages >= 400)
                              .OrderByDescending(x => x.Price);
             foreach (var book in pages) {
-                Console.WriteLine($"{book.Title}:{book.Price}");
+                Console.WriteLine($"{book.Title}：{book.Price}");
             }
         }
 
         private static void Exercise7(List<Book> books) {
-            var count = books.Where(s => s.Title.Contains("C#"));
-            Console.WriteLine(count);
+            var book = books.Where(s => s.Title.Contains("C#"))
+                            .Where(n => n.Pages <= 500);
+            foreach(var title in book) {
+                Console.WriteLine(title.Title);
+            }
+            
         }
     }
 }
