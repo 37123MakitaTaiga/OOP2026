@@ -1,4 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿
 
 namespace Section01 {
     internal class Program {
@@ -30,15 +30,17 @@ namespace Section01 {
                 Console.WriteLine();
             }
 
-            while (true) {
-                int searchmenu = menuDisp();
-                if (searchmenu is 3) break;
-                switch (searchmenu) {
+            Boolean endFlag = false; //終了フラグ
+            while (!endFlag) {
+                switch (menuDisp()) {
                     case 1:
                         allDisp();
                         break;
                     case 2:
                         searchPrefCaptalLocation();
+                        break;
+                    default:
+                        endFlag = true;
                         break;
                 }
                     
