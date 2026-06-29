@@ -1,4 +1,6 @@
-﻿namespace Section01 {
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace Section01 {
     internal class Program {
         static private Dictionary<string, string> prefOfficeDict = new Dictionary<string, string>();
 
@@ -20,33 +22,43 @@
                 prefCaptalLocation = Console.ReadLine();
 
                 //③県庁所在地登録処理
-                prefOfficeDict.Add(pref, prefCaptalLocation);
-            }
-            while (true) {
-                Console.WriteLine("*** メニュー ***");
-                Console.WriteLine("1:一覧表示");
-                Console.WriteLine("2:検索");
-                Console.WriteLine("3:終了");
-                Console.Write("＞ ");
-                var n = Console.ReadLine();
-                if (n is "3") break;
-                switch (n) {
-                    case "1":
-                        foreach (var item in prefOfficeDict) {
-                            Console.WriteLine($"{item.Key}の県庁所在地は{item.Value}です");
-                        }
-                        break;
-                    case "2":
-                        Console.Write("検索:");
-                        var key = Console.ReadLine();
-                        var value = prefOfficeDict[key];
-                        Console.WriteLine($"{key}の県庁所在地は{value}です");
-                        break;
-
+                if (prefOfficeDict.ContainsKey(pref)) {
+                    Console.Write("上書きしますか？(Y/N):");
+                    var yn = Console.ReadLine();
+                    if (yn is "Y") {
+                        prefOfficeDict[pref] = prefCaptalLocation;
+                    }
+                } else {
+                    prefOfficeDict.Add(pref, prefCaptalLocation);
                 }
             }
-
-
         }
+        private static int menuDisp() {
+            Console.WriteLine("\n*** メニュー ***");
+            Console.WriteLine("1:一覧表示");
+            Console.WriteLine("2:検索");
+            Console.WriteLine("3:終了");
+            Console.Write("＞ ");
+
+            int number = int.Parse(Console.ReadLine());
+            return number;
+        }
+
+        private static void allDisp() {
+            foreach (var item in prefOfficeDict) {
+                yield return Console.WriteLine($"{item.Key}の県庁所在地は{item.Value}です");
+            }
+        }
+
+        private static void searchPrefCaptalLocation() {
+            case "2":
+                Console.Write("検索:");
+                var key = Console.ReadLine();
+                var value = prefOfficeDict[key];
+                Console.WriteLine($"{key}の県庁所在地は{value}です");
+                break;
+            }
+
+
     }
 }
