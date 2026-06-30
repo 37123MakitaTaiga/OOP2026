@@ -11,15 +11,15 @@ namespace Exercise01 {
 
         private static void Exercise1(string text) {
             var alphabetDict = new Dictionary<char, int>();
-            foreach (var alph in text.ToUpper()){
+            foreach (var alph in text.ToUpper()) {
                 if ('A' <= alph && alph <= 'Z') {
                     if (alphabetDict.ContainsKey(alph)) {
                         alphabetDict[alph]++;
-                    }else {
+                    } else {
                         alphabetDict[alph] = 1;
                     }
-                } 
-                
+                }
+
             }
             foreach (var item in alphabetDict.OrderBy(x => x.Key)) {
                 Console.WriteLine($"{item.Key}:{item.Value}");
@@ -29,6 +29,20 @@ namespace Exercise01 {
 
 
         private static void Exercise2(string text) {
+            var alphabetDict = new SortedDictionary<char, int>();
+            foreach (var alph in text.ToUpper()) {
+                if ('A' <= alph && alph <= 'Z') {
+                    if (alphabetDict.ContainsKey(alph)) {
+                        alphabetDict[alph]++;
+                    } else {
+                        alphabetDict[alph] = 1;
+                    }
+                }
+
+            }
+            foreach (var item in alphabetDict) {
+                Console.WriteLine($"{item.Key}:{item.Value}");
+            }
         }
     }
 }
