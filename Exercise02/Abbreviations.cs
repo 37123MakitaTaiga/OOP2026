@@ -1,4 +1,3 @@
-
 public class Abbreviations {
     private readonly Dictionary<string, string> _dict = [];
 
@@ -37,6 +36,7 @@ public class Abbreviations {
 
     // 8.2.2（最終的に式形式で記述すること）
     public bool Remove(string abb) => _dict.Remove(abb);
+
 
     // Dictionary<TKey, TValue>は、
     // IEnumerable<KeyValuePair<TKey, TValue>>を実装しているので
