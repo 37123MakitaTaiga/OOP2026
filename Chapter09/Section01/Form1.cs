@@ -25,8 +25,13 @@ namespace Section01 {
             //if (today < birth.AddYears(age)) {
             //    age--;
             //}
-            tbOut2.Text = $"{GetAge(birth,today)}Î‚Å‚·";
+            var date = new CultureInfo("ja-JP");
+            date.DateTimeFormat.Calendar = new JapaneseCalendar();
+            var dayofweek = date.DateTimeFormat.GetShortestDayName(birth.DayOfWeek);
+
+            tbOut2.Text = $"{GetAge(birth, today)}Î‚Å‚·";
             tbOut.Text = $"¶‚Ü‚ê‚Ä‚©‚ç{diff.Days}“ú‚Å‚·";
+            tbOut3.Text = $"¶‚Ü‚ê‚½{birth.Month}ŒŽ{birth.Day}“ú‚Í‘æ{NthWeek(birth)}T‚Ì{dayofweek}—j“ú‚Å‚·";
 
         }
 
@@ -37,6 +42,12 @@ namespace Section01 {
                 age--;
             }
             return age;
+        }
+        //Žw’è‚µ‚½“ú‚ª‘æ‰½T‚©‹‚ß‚é
+        static int NthWeek(DateTime date) {
+            var firstDay = new DateTime(date.Year, date.Month, 1);
+            var firstDayOfWeek = (int)(firstDay.DayOfWeek);
+            return (date.Day + firstDayOfWeek - 1) / 7 + 1;
         }
     }
 }

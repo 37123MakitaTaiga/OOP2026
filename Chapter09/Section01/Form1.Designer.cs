@@ -35,6 +35,8 @@
             label3 = new Label();
             label4 = new Label();
             tbOut2 = new TextBox();
+            label5 = new Label();
+            tbOut3 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)nudDay).BeginInit();
             SuspendLayout();
             // 
@@ -63,9 +65,9 @@
             // tbOut
             // 
             tbOut.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            tbOut.Location = new Point(40, 398);
+            tbOut.Location = new Point(42, 398);
             tbOut.Name = "tbOut";
-            tbOut.Size = new Size(338, 35);
+            tbOut.Size = new Size(334, 35);
             tbOut.TabIndex = 2;
             // 
             // nudDay
@@ -135,22 +137,42 @@
             // tbOut2
             // 
             tbOut2.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            tbOut2.Location = new Point(42, 336);
+            tbOut2.Location = new Point(40, 336);
             tbOut2.Name = "tbOut2";
             tbOut2.Size = new Size(336, 35);
             tbOut2.TabIndex = 2;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(42, 444);
+            label5.Name = "label5";
+            label5.Size = new Size(24, 15);
+            label5.TabIndex = 5;
+            label5.Text = "メモ";
+            // 
+            // tbOut3
+            // 
+            tbOut3.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            tbOut3.Location = new Point(42, 462);
+            tbOut3.Multiline = true;
+            tbOut3.Name = "tbOut3";
+            tbOut3.Size = new Size(334, 83);
+            tbOut3.TabIndex = 2;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1007, 570);
+            ClientSize = new Size(446, 570);
             Controls.Add(btBirthCalc);
+            Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(nudDay);
+            Controls.Add(tbOut3);
             Controls.Add(tbOut2);
             Controls.Add(tbOut);
             Controls.Add(btGet);
@@ -176,5 +198,7 @@
         private Label label3;
         private Label label4;
         private TextBox tbOut2;
+        private Label label5;
+        private TextBox tbOut3;
     }
 }
