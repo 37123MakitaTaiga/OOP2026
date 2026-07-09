@@ -23,6 +23,7 @@
         ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            Label label6;
             ofdOpen = new OpenFileDialog();
             dtpDate = new DateTimePicker();
             btGet = new Button();
@@ -37,6 +38,8 @@
             tbOut2 = new TextBox();
             label5 = new Label();
             tbOut3 = new TextBox();
+            tbOut4 = new TextBox();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)nudDay).BeginInit();
             SuspendLayout();
             // 
@@ -65,7 +68,7 @@
             // tbOut
             // 
             tbOut.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            tbOut.Location = new Point(42, 398);
+            tbOut.Location = new Point(40, 305);
             tbOut.Name = "tbOut";
             tbOut.Size = new Size(334, 35);
             tbOut.TabIndex = 2;
@@ -92,7 +95,7 @@
             // dtpBirthday
             // 
             dtpBirthday.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            dtpBirthday.Location = new Point(40, 268);
+            dtpBirthday.Location = new Point(40, 186);
             dtpBirthday.Name = "dtpBirthday";
             dtpBirthday.Size = new Size(196, 35);
             dtpBirthday.TabIndex = 0;
@@ -100,7 +103,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(42, 244);
+            label2.Location = new Point(42, 168);
             label2.Name = "label2";
             label2.Size = new Size(55, 15);
             label2.TabIndex = 5;
@@ -108,7 +111,7 @@
             // 
             // btBirthCalc
             // 
-            btBirthCalc.Location = new Point(276, 269);
+            btBirthCalc.Location = new Point(273, 186);
             btBirthCalc.Name = "btBirthCalc";
             btBirthCalc.Size = new Size(100, 34);
             btBirthCalc.TabIndex = 6;
@@ -119,7 +122,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(42, 318);
+            label3.Location = new Point(40, 225);
             label3.Name = "label3";
             label3.Size = new Size(31, 15);
             label3.TabIndex = 5;
@@ -128,7 +131,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(42, 380);
+            label4.Location = new Point(40, 287);
             label4.Name = "label4";
             label4.Size = new Size(55, 15);
             label4.TabIndex = 5;
@@ -137,15 +140,15 @@
             // tbOut2
             // 
             tbOut2.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            tbOut2.Location = new Point(40, 336);
+            tbOut2.Location = new Point(40, 243);
             tbOut2.Name = "tbOut2";
-            tbOut2.Size = new Size(336, 35);
+            tbOut2.Size = new Size(333, 35);
             tbOut2.TabIndex = 2;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(42, 444);
+            label5.Location = new Point(40, 351);
             label5.Name = "label5";
             label5.Size = new Size(24, 15);
             label5.TabIndex = 5;
@@ -154,11 +157,28 @@
             // tbOut3
             // 
             tbOut3.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            tbOut3.Location = new Point(42, 462);
+            tbOut3.Location = new Point(40, 369);
             tbOut3.Multiline = true;
             tbOut3.Name = "tbOut3";
             tbOut3.Size = new Size(334, 83);
             tbOut3.TabIndex = 2;
+            // 
+            // tbOut4
+            // 
+            tbOut4.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            tbOut4.Location = new Point(40, 485);
+            tbOut4.Name = "tbOut4";
+            tbOut4.Size = new Size(333, 35);
+            tbOut4.TabIndex = 2;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(40, 467);
+            label6.Name = "label6";
+            label6.Size = new Size(96, 15);
+            label6.TabIndex = 5;
+            label6.Text = "誕生日までの日数";
             // 
             // Form1
             // 
@@ -166,6 +186,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(446, 570);
             Controls.Add(btBirthCalc);
+            Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -174,6 +195,7 @@
             Controls.Add(nudDay);
             Controls.Add(tbOut3);
             Controls.Add(tbOut2);
+            Controls.Add(tbOut4);
             Controls.Add(tbOut);
             Controls.Add(btGet);
             Controls.Add(dtpBirthday);
@@ -200,5 +222,6 @@
         private TextBox tbOut2;
         private Label label5;
         private TextBox tbOut3;
+        private TextBox tbOut4;
     }
 }

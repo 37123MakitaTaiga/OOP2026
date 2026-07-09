@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Runtime.CompilerServices;
 
 namespace Section01 {
     public partial class Form1 : Form {
@@ -29,10 +30,21 @@ namespace Section01 {
             date.DateTimeFormat.Calendar = new JapaneseCalendar();
             var dayofweek = date.DateTimeFormat.GetShortestDayName(birth.DayOfWeek);
 
+
             tbOut2.Text = $"{GetAge(birth, today)}Î‚Å‚·";
             tbOut.Text = $"¶‚Ü‚ê‚Ä‚©‚ç{diff.Days}“ú‚Å‚·";
             tbOut3.Text = $"¶‚Ü‚ê‚½{birth.Month}Œ{birth.Day}“ú‚Í‘æ{NthWeek(birth)}T‚Ì{dayofweek}—j“ú‚Å‚·";
 
+            DateTime nextBirthday = new DateTime(today.Year, birth.Month, birth.Day);
+            if (nextBirthday < today) {
+                nextBirthday = nextBirthday.AddYears(1);
+            }
+            var span = nextBirthday - today;
+            if (span.Days == 0) {
+                tbOut4.Text = "’a¶“ú‚Í¡“ú‚Å‚·B";
+            } else {
+                tbOut4.Text = $"’a¶“ú‚Ü‚Å‚ ‚Æ{span.Days}“ú‚Å‚·B";
+            }
         }
 
         //”N—î‚ğ‹‚ß‚éƒƒ\ƒbƒh
