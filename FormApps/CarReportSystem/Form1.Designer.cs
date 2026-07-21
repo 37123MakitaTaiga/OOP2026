@@ -277,6 +277,7 @@
             btDeletePictuer.TabIndex = 6;
             btDeletePictuer.Text = "削除";
             btDeletePictuer.UseVisualStyleBackColor = false;
+            btDeletePictuer.Click += btDeletePictuer_Click;
             // 
             // btAddRecord
             // 
@@ -308,6 +309,7 @@
             btDeleteRecord.TabIndex = 7;
             btDeleteRecord.Text = "削除";
             btDeleteRecord.UseVisualStyleBackColor = false;
+            btDeleteRecord.Click += btDeleteRecord_Click;
             // 
             // pbPictuer
             // 
@@ -406,6 +408,7 @@
             statusStrip1.Location = new Point(0, 618);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(809, 22);
+            statusStrip1.SizingGrip = false;
             statusStrip1.TabIndex = 11;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -448,6 +451,7 @@
             MainMenuStrip = menuStrip1;
             Name = "Form1";
             Text = "試乗レポート管理システム";
+            Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRecords).EndInit();
