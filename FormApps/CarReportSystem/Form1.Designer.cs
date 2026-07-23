@@ -62,6 +62,7 @@
             statusStrip1 = new StatusStrip();
             tsslbMessage = new ToolStripStatusLabel();
             ofdPicFileOpen = new OpenFileDialog();
+            cdColor = new ColorDialog();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRecords).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
@@ -199,8 +200,7 @@
             dgvRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvRecords.Size = new Size(643, 186);
             dgvRecords.TabIndex = 3;
-            dgvRecords.Click += dgvRecords_Click;
-            dgvRecords.SystemColorsChanged += dgvRecords_SystemColorsChanged;
+            dgvRecords.SelectionChanged += dgvRecords_SelectionChanged;
             // 
             // label4
             // 
@@ -294,11 +294,11 @@
             btAddRecord.UseVisualStyleBackColor = false;
             btAddRecord.Click += btAddRecord_Click;
             // 
-            // btModifyReport
+            // btModifyRecord
             // 
             btModifyRecord.BackColor = Color.OldLace;
             btModifyRecord.Location = new Point(592, 336);
-            btModifyRecord.Name = "btModifyReport";
+            btModifyRecord.Name = "btModifyRecord";
             btModifyRecord.Size = new Size(97, 70);
             btModifyRecord.TabIndex = 7;
             btModifyRecord.Text = "修正";
@@ -363,36 +363,38 @@
             // 開くToolStripMenuItem
             // 
             開くToolStripMenuItem.Name = "開くToolStripMenuItem";
-            開くToolStripMenuItem.Size = new Size(180, 22);
+            開くToolStripMenuItem.Size = new Size(119, 22);
             開くToolStripMenuItem.Text = "開く...";
             // 
             // 保存ToolStripMenuItem
             // 
             保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
-            保存ToolStripMenuItem.Size = new Size(180, 22);
+            保存ToolStripMenuItem.Size = new Size(119, 22);
             保存ToolStripMenuItem.Text = "保存...";
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(177, 6);
+            toolStripSeparator2.Size = new Size(116, 6);
             // 
             // 色設定ToolStripMenuItem
             // 
             色設定ToolStripMenuItem.Name = "色設定ToolStripMenuItem";
-            色設定ToolStripMenuItem.Size = new Size(180, 22);
+            色設定ToolStripMenuItem.Size = new Size(119, 22);
             色設定ToolStripMenuItem.Text = "色設定...";
+            色設定ToolStripMenuItem.Click += 色設定ToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(177, 6);
+            toolStripSeparator1.Size = new Size(116, 6);
             // 
             // 終了ToolStripMenuItem
             // 
             終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
-            終了ToolStripMenuItem.Size = new Size(180, 22);
+            終了ToolStripMenuItem.Size = new Size(119, 22);
             終了ToolStripMenuItem.Text = "終了(&X)";
+            終了ToolStripMenuItem.Click += 終了ToolStripMenuItem_Click;
             // 
             // ヘルプHToolStripMenuItem
             // 
@@ -510,5 +512,6 @@
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel tsslbMessage;
         private OpenFileDialog ofdPicFileOpen;
+        private ColorDialog cdColor;
     }
 }
