@@ -1,4 +1,6 @@
 using System.ComponentModel;
+using System.Xml;
+using System.Xml.Serialization;
 using static CarReportSystem.CarReport;
 
 namespace CarReportSystem {
@@ -6,6 +8,9 @@ namespace CarReportSystem {
 
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
+
+        //設定クラスのオブジェクトを生成
+        Setting setting = new Setting();
 
         public Form1() {
             InitializeComponent();
@@ -168,7 +173,7 @@ namespace CarReportSystem {
         }
 
         private void dgvRecords_SelectionChanged(object sender, EventArgs e) {
-            
+
             if ((dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport)
                     || (!dgvRecords.CurrentRow.Selected)) return;
 
@@ -180,6 +185,16 @@ namespace CarReportSystem {
             tbReport.Text = carReport.Report;
             pbPicture.Image = carReport.Picture;
             InputItemsUpdate();     //データグリッドビューを更新したら呼ぶメソッド
+        }
+
+        //フォームが閉じたら呼ばれるイベントハンドラ
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+            //設定ファイルへ色情報を保存する処理（シリアル化）
+
+            using(var writer = XmlWriter.Create("setting.xml")) {
+                var serializer = new XmlSerializer(setting.GetType());
+                serializer.Serialize(writer, setting);
+            }
         }
     }
 }
