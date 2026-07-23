@@ -27,13 +27,15 @@ namespace CarReportSystem {
                 Maker = GetRadioButtonMaker(),
                 CarName = cbCarName.Text,
                 Report = tbReport.Text,
-                Picture = pbPictuer.Image,
+                Picture = pbPicture.Image,
             };
             listCarReports.Add(carReport);
 
             SetCbAuthor(cbAuthor.Text);
             SetCbCarName(cbCarName.Text);
-            imuputItemsAllClear();  //入力項目のクリア
+
+            dgvRecords.CurrentRow.Selected = false;
+            ImputItemsUpdate();
         }
         private MakerGroup GetRadioButtonMaker() {
             if (rbToyota.Checked)
@@ -51,38 +53,40 @@ namespace CarReportSystem {
         }
 
         private void btPicOpen_Click(object sender, EventArgs e) {
-            if (ofdPicFilOpen.ShowDialog() == DialogResult.OK) {
-                pbPictuer.Image = Image.FromFile(ofdPicFilOpen.FileName);
+            if (ofdPicFileOpen.ShowDialog() == DialogResult.OK) {
+                pbPicture.Image = Image.FromFile(ofdPicFileOpen.FileName);
             }
         }
 
         private void btNewInput_Click(object sender, EventArgs e) {
-            imuputItemsAllClear();
+            ImuputItemsAllClear();
         }
 
-        private void imuputItemsAllClear() {
+        private void ImuputItemsAllClear() {
             cbAuthor.Text = string.Empty;
             rbOther.Checked = true;
             cbCarName.Text = string.Empty;
             tbReport.Text = string.Empty;
             dtpDate.Value = DateTime.Today;
-            pbPictuer.Image = null;
+            pbPicture.Image = null;
+
+            dgvRecords.CurrentRow.Selected = false;
         }
 
         private void dgvRecords_Click(object sender, EventArgs e) {
 
-            if (dgvRecords.CurrentRow is null)
-                return;
+            //if ((dgvRecords.CurrentRow is null)
+            // || (!dgvRecords.CurrentRow.Selected)) return;
 
-            dtpDate.Value = (DateTime)dgvRecords.CurrentRow.Cells["Date"].Value;
-            cbAuthor.Text = (string)dgvRecords.CurrentRow.Cells["Author"].Value;
-            SetRadioButtoMaker((MakerGroup)dgvRecords.CurrentRow.Cells["Maker"].Value);
-            cbCarName.Text = (string)dgvRecords.CurrentRow.Cells["CarName"].Value;
-            tbReport.Text = (string)dgvRecords.CurrentRow.Cells["Report"].Value;
-            pbPictuer.Image = (Image)dgvRecords.CurrentRow.Cells["Picture"].Value;
+            //cbAuthor.Text = (string)dgvRecords.CurrentRow.Cells["Author"].Value;
+            //SetRadioButtonMaker((MakerGroup)dgvRecords.CurrentRow.Cells["Maker"].Value);
+            //cbCarName.Text = (string)dgvRecords.CurrentRow.Cells["CarName"].Value;
+            //tbReport.Text = (string)dgvRecords.CurrentRow.Cells["Report"].Value;
+            //pbPicture.Image = (Image)dgvRecords.CurrentRow.Cells["Picture"].Value;
+            //ImputItemsUpdate();
         }
 
-        private void SetRadioButtoMaker(MakerGroup targetMaker) {
+        private void SetRadioButtonMaker(MakerGroup targetMaker) {
             switch (targetMaker) {
                 case MakerGroup.トヨタ:
                     rbToyota.Checked = true;
@@ -121,13 +125,43 @@ namespace CarReportSystem {
         }
 
         private void btDeletePictuer_Click(object sender, EventArgs e) {
-            pbPictuer.Image = null;
+            pbPicture.Image = null;
         }
 
         private void btDeleteRecord_Click(object sender, EventArgs e) {
 
-            //RemoveAt(消したい場所の要素番号)
+            if ((dgvRecords.CurrentRow is null)
+                || (!dgvRecords.CurrentRow.Selected)) return;
             listCarReports.RemoveAt(dgvRecords.CurrentRow.Index);
+            
+        }
+
+        private void btModifyRecord_Click(object sender, EventArgs e) {
+            dgvRecords.CurrentRow.Cells["Author"].Value = cbAuthor.Text;
+            dgvRecords.CurrentRow.Cells["Maker"].Value = GetRadioButtonMaker();
+            dgvRecords.CurrentRow.Cells["CarName"].Value = cbCarName.Text;
+            dgvRecords.CurrentRow.Cells["Report"].Value = tbReport.Text;
+            dgvRecords.CurrentRow.Cells["Picture"].Value = pbPicture.Image;
+
+            dgvRecords.Refresh();
+        }
+
+        public void ImputItemsUpdate() {
+            if (!dgvRecords.CurrentRow.Selected)
+                ImuputItemsAllClear();
+        }
+
+        private void dgvRecords_SystemColorsChanged(object sender, EventArgs e) {
+            if ((dgvRecords.CurrentRow is null)
+                 || (!dgvRecords.CurrentRow.Selected)) return;
+
+            cbAuthor.Text = (string)dgvRecords.CurrentRow.Cells["Author"].Value;
+            SetRadioButtonMaker((MakerGroup)dgvRecords.CurrentRow.Cells["Maker"].Value);
+            cbCarName.Text = (string)dgvRecords.CurrentRow.Cells["CarName"].Value;
+            tbReport.Text = (string)dgvRecords.CurrentRow.Cells["Report"].Value;
+            pbPicture.Image = (Image)dgvRecords.CurrentRow.Cells["Picture"].Value;
+            ImputItemsUpdate();     //データグリッドビューを更新したら呼ぶメソッド
         }
     }
 }
+
