@@ -10,12 +10,36 @@ namespace CarReportSystem {
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
 
         //設定クラスのオブジェクトを生成
-        Setting setting = new Setting();
+        Settings setting = new Settings();
 
         public Form1() {
             InitializeComponent();
             dgvRecords.DataSource = listCarReports;
         }
+
+        private void Form1_Load(object sender, EventArgs e) {
+            //設定ファイルを読み込み背景色を設定する（逆シリアル化）
+            //P286以降を参考にする（ファイル名:setting.xml）
+
+            //ファイルが存在しているか？
+            if(File.Exists("setting.xml")) {
+                try {
+                    using (var reader = XmlReader.Create("setting.xml")) {
+                        var serializer = new XmlSerializer(typeof(Settings));
+                        var settings = serializer.Deserialize(reader) as Settings;
+                        BackColor = Color.FromArgb(settings.MainFormBackColor);
+                    }
+                }
+                catch (Exception ex) {
+                    tsslbMessage.Text = "設定ファイル読み込みエラー";
+                    MessageBox.Show(ex.Message);//←より具体的なエラーを出力
+                }
+            } else {
+                tsslbMessage.Text = "設定ファイルがありません";
+            }
+        }
+
+
         //追加ボタンイベントハンドラ
         private void btAddRecord_Click(object sender, EventArgs e) {
 
@@ -112,10 +136,6 @@ namespace CarReportSystem {
                 cbCarName.Items.Add(carName);
         }
 
-        private void Form1_Load(object sender, EventArgs e) {
-
-        }
-
         private void btDeletePictuer_Click(object sender, EventArgs e) {
             pbPicture.Image = null;
         }
@@ -158,19 +178,7 @@ namespace CarReportSystem {
             if (!dgvRecords.CurrentRow.Selected)
                 InuputItemsAllClear();
         }
-
-
-
-        private void 終了ToolStripMenuItem_Click(object sender, EventArgs e) {
-            Application.Exit();
-        }
-
-        private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (cdColor.ShowDialog() == DialogResult.OK) {
-                cdColor.ShowDialog();
-                BackColor = cdColor.Color;
-            }
-        }
+        
 
         private void dgvRecords_SelectionChanged(object sender, EventArgs e) {
 
@@ -185,6 +193,18 @@ namespace CarReportSystem {
             tbReport.Text = carReport.Report;
             pbPicture.Image = carReport.Picture;
             InputItemsUpdate();     //データグリッドビューを更新したら呼ぶメソッド
+        }
+
+        private void 終了ToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
+        }
+
+        private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (cdColor.ShowDialog() == DialogResult.OK) {
+                BackColor = cdColor.Color;
+
+                setting.MainFormBackColor = cdColor.Color.ToArgb();
+            }
         }
 
         //フォームが閉じたら呼ばれるイベントハンドラ
