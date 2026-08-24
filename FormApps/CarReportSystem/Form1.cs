@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 using System.Xml.Serialization;
 using static CarReportSystem.CarReport;
@@ -10,7 +11,7 @@ namespace CarReportSystem {
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
 
         //設定クラスのオブジェクトを生成
-        Settings setting = new Settings();
+        Settings settings = new Settings();
 
         public Form1() {
             InitializeComponent();
@@ -26,7 +27,8 @@ namespace CarReportSystem {
                 try {
                     using (var reader = XmlReader.Create("setting.xml")) {
                         var serializer = new XmlSerializer(typeof(Settings));
-                        var settings = serializer.Deserialize(reader) as Settings;
+                        settings = serializer.Deserialize(reader) as Settings;
+                        //背景色設定
                         BackColor = Color.FromArgb(settings.MainFormBackColor);
                     }
                 }
@@ -210,11 +212,34 @@ namespace CarReportSystem {
         //フォームが閉じたら呼ばれるイベントハンドラ
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
             //設定ファイルへ色情報を保存する処理（シリアル化）
-
             using(var writer = XmlWriter.Create("setting.xml")) {
                 var serializer = new XmlSerializer(setting.GetType());
                 serializer.Serialize(writer, setting);
             }
+        }
+
+        private void 保存ToolStripMenuItem_Click(object sender, EventArgs e) {
+            reportSeveFile();
+        }
+           
+
+        private void reportSeveFile() {
+            if (sfdReportFileSave.ShowDialog() == DialogResult.OK) {
+                try {
+                    //バイナリ形式でシリアル化
+#pragma warning disable SYSLIB0011
+                    var bf = new BinaryFormatter();
+#pragma warning restore SYSLIB0011
+                }
+                catch (Exception ex) {
+                    tsslbMessage.Text = "ファイル書き出しエラー";
+                    MessageBox.Show(ex.Message);//←より具体的なエラーを出力
+                }
+            }
+        }
+
+        private void reportOpenFile() {
+
         }
     }
 }

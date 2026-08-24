@@ -63,6 +63,8 @@
             tsslbMessage = new ToolStripStatusLabel();
             ofdPicFileOpen = new OpenFileDialog();
             cdColor = new ColorDialog();
+            openFileDialog1 = new OpenFileDialog();
+            sfdReportFileSave = new SaveFileDialog();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRecords).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbPicture).BeginInit();
@@ -428,6 +430,10 @@
             // 
             ofdPicFileOpen.FileName = "openFileDialog1";
             // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -514,5 +520,7 @@
         private ToolStripStatusLabel tsslbMessage;
         private OpenFileDialog ofdPicFileOpen;
         private ColorDialog cdColor;
+        private OpenFileDialog openFileDialog1;
+        private SaveFileDialog sfdReportFileSave;
     }
 }
