@@ -23,7 +23,7 @@ namespace CarReportSystem {
             //P286以降を参考にする（ファイル名:setting.xml）
 
             //ファイルが存在しているか？
-            if(File.Exists("setting.xml")) {
+            if (File.Exists("setting.xml")) {
                 try {
                     using (var reader = XmlReader.Create("setting.xml")) {
                         var serializer = new XmlSerializer(typeof(Settings));
@@ -84,8 +84,8 @@ namespace CarReportSystem {
         }
 
         private void btPicOpen_Click(object sender, EventArgs e) {
-            if (ofdPicFileOpen.ShowDialog() == DialogResult.OK) {
-                pbPicture.Image = Image.FromFile(ofdPicFileOpen.FileName);
+            if (ofdRepotFileOpen.ShowDialog() == DialogResult.OK) {
+                pbPicture.Image = Image.FromFile(ofdRepotFileOpen.FileName);
             }
         }
 
@@ -180,7 +180,7 @@ namespace CarReportSystem {
             if (!dgvRecords.CurrentRow.Selected)
                 InuputItemsAllClear();
         }
-        
+
 
         private void dgvRecords_SelectionChanged(object sender, EventArgs e) {
 
@@ -205,23 +205,22 @@ namespace CarReportSystem {
             if (cdColor.ShowDialog() == DialogResult.OK) {
                 BackColor = cdColor.Color;
 
-                setting.MainFormBackColor = cdColor.Color.ToArgb();
+                settings.MainFormBackColor = cdColor.Color.ToArgb();
             }
         }
 
         //フォームが閉じたら呼ばれるイベントハンドラ
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
             //設定ファイルへ色情報を保存する処理（シリアル化）
-            using(var writer = XmlWriter.Create("setting.xml")) {
-                var serializer = new XmlSerializer(setting.GetType());
-                serializer.Serialize(writer, setting);
+            using (var writer = XmlWriter.Create("setting.xml")) {
+                var serializer = new XmlSerializer(settings.GetType());
+                serializer.Serialize(writer, settings);
             }
         }
 
-        private void 保存ToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void 保存ToolStripMenuItem_Click_1(object sender, EventArgs e) {
             reportSeveFile();
         }
-           
 
         private void reportSeveFile() {
             if (sfdReportFileSave.ShowDialog() == DialogResult.OK) {
@@ -230,6 +229,10 @@ namespace CarReportSystem {
 #pragma warning disable SYSLIB0011
                     var bf = new BinaryFormatter();
 #pragma warning restore SYSLIB0011
+                    using (FileStream fs = File.Open(sfdReportFileSave.FileName,FileMode.Create)){
+                        bf.Serialize(fs, listCarReports);
+                    }
+
                 }
                 catch (Exception ex) {
                     tsslbMessage.Text = "ファイル書き出しエラー";
@@ -238,9 +241,42 @@ namespace CarReportSystem {
             }
         }
 
-        private void reportOpenFile() {
-
+        private void 開くToolStripMenuItem_Click(object sender, EventArgs e) {
+            reportOpenFile();
         }
+
+
+        private void reportOpenFile() {
+            if (ofdRepotFileOpen.ShowDialog() == DialogResult.OK) {
+                try {
+                    //バイナリ形式でシリアル化
+#pragma warning disable SYSLIB0011
+                    var bf = new BinaryFormatter();
+#pragma warning restore SYSLIB0011
+                    using (FileStream fs = File.Open(
+                        ofdRepotFileOpen.FileName,//ファイル名
+                        FileMode.Open,//ファイルモード
+                        FileAccess.Read//アクセス
+                        )) {
+                        listCarReports = (BindingList<CarReport>)bf.Deserialize(fs);
+                        dgvRecords.DataSource = listCarReports;
+                    }
+                    //コンボボックスの履歴を消す
+                    cbAuthor.Items.Clear();
+                    cbCarName.Items.Clear();
+                    //コンボボックスお履歴を再登録
+                    foreach (var report in listCarReports) {
+                        SetCbAuthor(report.Author);
+                        SetCbCarName(report.CarName);
+                    }
+                }
+                catch (Exception ex) {
+                    tsslbMessage.Text = "設定ファイル呼び出しエラー";
+                    MessageBox.Show(ex.Message);//←より具体的なエラーを出力
+                }
+            }
+        }
+
     }
 }
 
