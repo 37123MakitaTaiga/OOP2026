@@ -139,17 +139,19 @@ namespace CarReportSystem {
             if (!cbCarName.Items.Contains(carName))
                 cbCarName.Items.Add(carName);
         }
-
         private void btDeletePictuer_Click(object sender, EventArgs e) {
             pbPicture.Image = null;
         }
-
         private void btDeleteRecord_Click(object sender, EventArgs e) {
-
             if ((dgvRecords.CurrentRow is null)
                 || (!dgvRecords.CurrentRow.Selected)) return;
-            listCarReports.RemoveAt(dgvRecords.CurrentRow.Index);
 
+            //削除したいインデックスを指定してリストから削除
+            if(dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport) {
+                tsslbMessage.Text = "削除するレポートを選択してください";
+                return;
+            }
+            listCarReports.Remove(carReport);
         }
 
         private void btModifyRecord_Click(object sender, EventArgs e) {
@@ -164,6 +166,12 @@ namespace CarReportSystem {
                 return;
             }
 
+            if (dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport) {
+                tsslbMessage.Text = "修正するレポートを選択してください";
+                return;
+            }
+
+            //カーレポート管理用リストに該当する要素のデータを書き換える
             listCarReports[dgvRecords.CurrentRow.Index].Date = dtpDate.Value.Date;
             listCarReports[dgvRecords.CurrentRow.Index].Author = cbAuthor.Text.Trim();
             listCarReports[dgvRecords.CurrentRow.Index].Maker = GetRadioButtonMaker();
