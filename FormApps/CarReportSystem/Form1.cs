@@ -242,7 +242,6 @@ namespace CarReportSystem {
             reportOpenFile();
         }
 
-
         private void reportOpenFile() {
             if (ofdRepotFileOpen.ShowDialog() == DialogResult.OK) {
                 try {
