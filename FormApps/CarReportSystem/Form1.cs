@@ -1,3 +1,4 @@
+using SQLiteProductSample;
 using System.ComponentModel;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
@@ -9,6 +10,8 @@ namespace CarReportSystem {
 
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
+        private readonly BindingList<CarReport> _reports = new();
+        private readonly CarReportRepository _repository = new();
 
         //設定クラスのオブジェクトを生成
         //Settings settings =  Settings.Instance;
@@ -56,8 +59,11 @@ namespace CarReportSystem {
             SetCbAuthor(cbAuthor.Text.Trim());
             SetCbCarName(cbCarName.Text.Trim());
 
+            ReloadCarReports();
+
             dgvRecords.CurrentRow.Selected = false;
             InputItemsUpdate();
+           
         }
         private MakerGroup GetRadioButtonMaker() {
             if (rbToyota.Checked)
@@ -160,6 +166,21 @@ namespace CarReportSystem {
                 return;
             }
 
+            try {
+                //選択中の商品のオブジェクトのデータを更新する
+                carReport.Date = dtpDate.Value.Date;
+                carReport.Author = cbAuthor.Text.Trim();
+                carReport.Maker = GetRadioButtonMaker();
+                carReport.CarName = cbCarName.Text.Trim();
+                carReport.Report = tbReport.Text;
+                carReport.Picture = pbPicture.Image;
+
+                _repository.Update(carReport);
+
+                ReloadCarReports();
+            }
+            catch (Exception ex) {
+            }
             //カーレポート管理用リストに該当する要素のデータを書き換える
             listCarReports[dgvRecords.CurrentRow.Index].Date = dtpDate.Value.Date;
             listCarReports[dgvRecords.CurrentRow.Index].Author = cbAuthor.Text.Trim();
@@ -270,6 +291,13 @@ namespace CarReportSystem {
                     tsslbMessage.Text = "設定ファイル呼び出しエラー";
                     MessageBox.Show(ex.Message);//←より具体的なエラーを出力
                 }
+            }
+        }
+
+        private void ReloadCarReports() {
+            _reports.Clear();
+            foreach (var product in _repository.GetAll()) {
+                _reports.Add(product);
             }
         }
 

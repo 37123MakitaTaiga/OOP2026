@@ -78,7 +78,7 @@ public class CarReportRepository {
         command.Parameters.AddWithValue("$maker", maker);
         command.Parameters.AddWithValue("$carName", carName);
         command.Parameters.AddWithValue("$report", report);
-        command.Parameters.AddWithValue("$picture", picture);
+        command.Parameters.AddWithValue("$picture", ImageToBytes(picture));
 
         //一つの値を返すSQLを実行する
         var result = command.ExecuteScalar();
@@ -109,7 +109,7 @@ public class CarReportRepository {
         command.Parameters.AddWithValue("$carName", report.CarName);
         command.Parameters.AddWithValue("$report", report.Report);
         command.Parameters.AddWithValue("$picture", report.Picture);
-        command.Parameters.AddWithValue("id", report.Id);
+        command.Parameters.AddWithValue("$id", report.Id);
 
         //更新件数が0なら対象が存在しない
         if (command.ExecuteNonQuery() == 0)
