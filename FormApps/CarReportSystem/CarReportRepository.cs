@@ -1,4 +1,5 @@
 using CarReportSystem;
+using Microsoft.Data.Sqlite;
 using System.Drawing.Imaging;
 using System.Globalization;
 using static CarReportSystem.CarReport;
@@ -33,7 +34,7 @@ public class CarReportRepository {
             reports.Add(new CarReport {
                 Id = reader.GetInt32(0), 
                 Date = DateTime.ParseExact(
-                    reader.GetString(1), 
+                    reader.GetString(1),
                     "yyyy-MM-dd",
                     CultureInfo.InvariantCulture),
                 Author = reader.GetString(2),  
@@ -49,9 +50,9 @@ public class CarReportRepository {
 
     }
 
-    //商品を一件追加する。Create(INSERT)に相当する
+    //レポートを一件追加する。Create(INSERT)に相当する
     //戻り値として自動採番されたIdを返す
-    public int Add(DateTime date, string author, MakerGroup maker, string carName, string report, Image picture) {
+    public int Add(CarReport carReport) {
         //接続オブジェクトを生成する。
         using var connection = Database.GetConnection();
 
@@ -65,7 +66,7 @@ public class CarReportRepository {
         //IF NOT EXISTS により、既にテーブルがあってもエラーにならない
         command.CommandText =
             """
-            INSERT INTO CarReports 
+            INSERT INTO CarReports
             (Date, Author, Maker, CarName, Report, Picture)
             VALUES 
             ($date, $author, $maker, $carName, $report, $picture);
@@ -73,23 +74,18 @@ public class CarReportRepository {
             SELECT last_insert_rowid();
             """;
 
-        command.Parameters.AddWithValue("$date", date);
-        command.Parameters.AddWithValue("$author", author);
-        command.Parameters.AddWithValue("$maker", maker);
-        command.Parameters.AddWithValue("$carName", carName);
-        command.Parameters.AddWithValue("$report", report);
-        command.Parameters.AddWithValue("$picture", ImageToBytes(picture));
+        SetCommandParameters(carReport, command);
 
-        //一つの値を返すSQLを実行する
-        var result = command.ExecuteScalar();
+            //一つの値を返すSQLを実行する
+            var result = command.ExecuteScalar();
 
         if (result is null)
-            throw new InvalidOperationException("登録した商品のIDを取得できませんでした。");
+            throw new InvalidOperationException("登録したレポートのIDを取得できませんでした。");
         //SQLiteのINTEGERはlongとして返るため、intへ変換する
         return Convert.ToInt32((long)result);
     }
 
-    public void Update(CarReport report) {
+    public void Update(CarReport carReport) {
         //接続オブジェクトを生成する。
         using var connection = Database.GetConnection();
         connection.Open();
@@ -103,17 +99,12 @@ public class CarReportRepository {
             WHERE Id = $id;
             """;
 
-        command.Parameters.AddWithValue("$date", report.Date);
-        command.Parameters.AddWithValue("$author", report.Author);
-        command.Parameters.AddWithValue("$maker", report.Maker);
-        command.Parameters.AddWithValue("$carName", report.CarName);
-        command.Parameters.AddWithValue("$report", report.Report);
-        command.Parameters.AddWithValue("$picture", report.Picture);
-        command.Parameters.AddWithValue("$id", report.Id);
+        SetCommandParameters(carReport, command);
+        command.Parameters.AddWithValue("$id", carReport.Id);
 
         //更新件数が0なら対象が存在しない
         if (command.ExecuteNonQuery() == 0)
-            throw new IndexOutOfRangeException("修正対象の商品が見つかりませんでした。");
+            throw new IndexOutOfRangeException("修正対象のレポートが見つかりませんでした。");
     }
 
     public void Delete(int id) {
@@ -147,5 +138,22 @@ public class CarReportRepository {
         using var image = Image.FromStream(stream);
         // MemoryStream破棄後も利用できるようBitmapとしてコピーする。
         return new Bitmap(image);
+    }
+
+    private static void SetCommandParameters(CarReport carReport, SqliteCommand command) {
+        command.Parameters.AddWithValue("$date", carReport.Date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture));
+        command.Parameters.AddWithValue("$author", carReport.Author);
+        command.Parameters.AddWithValue("$maker", carReport.Maker);
+        command.Parameters.AddWithValue("$carName", carReport.CarName);
+        command.Parameters.AddWithValue("$report", carReport.Report);
+
+        byte[]? pictureData = ImageToBytes(carReport.Picture);
+
+        var pictureParameter = command.Parameters.Add("$picture", Microsoft.Data.Sqlite.SqliteType.Blob);
+        if (pictureData is not null) {
+            pictureParameter.Value = pictureData;
+        } else {
+            pictureParameter.Value = DBNull.Value;
+        }
     }
 }   

@@ -10,6 +10,9 @@ namespace CarReportSystem {
 
         //カーレポート管理用リスト
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
+
+        CarReportRepository repository = new CarReportRepository();
+
         private readonly BindingList<CarReport> _reports = new();
         private readonly CarReportRepository _repository = new();
 
@@ -27,6 +30,14 @@ namespace CarReportSystem {
             try {
                 Settings.Instance.Load();
                 BackColor = Color.FromArgb(Settings.Instance.MainFormBackColor);
+
+                listCarReports.Clear();
+
+                foreach (var report in repository.GetAll()) {
+                    listCarReports.Add(report);
+                    SetCbAuthor(cbAuthor.Text.Trim());
+                    SetCbCarName(cbCarName.Text.Trim());
+                }
             }
             catch (Exception ex) {
                 tsslbMessage.Text = "ファイル書き出しエラー";
@@ -54,7 +65,9 @@ namespace CarReportSystem {
                 Report = tbReport.Text,
                 Picture = pbPicture.Image,
             };
+            carReport.Id = repository.Add(carReport);
             listCarReports.Add(carReport);
+
 
             SetCbAuthor(cbAuthor.Text.Trim());
             SetCbCarName(cbCarName.Text.Trim());
@@ -97,7 +110,7 @@ namespace CarReportSystem {
             tbReport.Text = string.Empty;
             dtpDate.Value = DateTime.Today;
             pbPicture.Image = null;
-
+            
             dgvRecords.CurrentRow.Selected = false;
         }
 
@@ -146,7 +159,11 @@ namespace CarReportSystem {
                 tsslbMessage.Text = "削除するレポートを選択してください";
                 return;
             }
+
+            repository.Delete(carReport.Id);
+            InuputItemsAllClear();
             listCarReports.Remove(carReport);
+            
         }
 
         private void btModifyRecord_Click(object sender, EventArgs e) {
@@ -179,7 +196,7 @@ namespace CarReportSystem {
 
                 ReloadCarReports();
             }
-            catch (Exception ex) {
+            catch {
             }
             //カーレポート管理用リストに該当する要素のデータを書き換える
             listCarReports[dgvRecords.CurrentRow.Index].Date = dtpDate.Value.Date;
