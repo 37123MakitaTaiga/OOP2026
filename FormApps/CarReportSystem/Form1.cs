@@ -26,16 +26,7 @@ namespace CarReportSystem {
                 Settings.Instance.Load();
                 BackColor = Color.FromArgb(Settings.Instance.MainFormBackColor);
 
-                _carreports.Clear();
-
-                cbAuthor.Items.Clear();
-                cbCarName.Items.Clear();
-
-                foreach (var report in _repository.GetAll()) {
-                    _carreports.Add(report);
-                    SetCbAuthor(report.Author);
-                    SetCbCarName(report.CarName);
-                }
+                ReloadCarReports();
             }
             catch (Exception ex) {
                 tsslbMessage.Text = "ファイル書き出しエラー";
@@ -67,8 +58,6 @@ namespace CarReportSystem {
             _carreports.Add(carReport);
 
 
-            SetCbAuthor(cbAuthor.Text.Trim());
-            SetCbCarName(cbCarName.Text.Trim());
 
             ReloadCarReports();
 
@@ -255,8 +244,14 @@ namespace CarReportSystem {
 
         private void ReloadCarReports() {
             _carreports.Clear();
-            foreach (var product in _repository.GetAll()) {
-                _carreports.Add(product);
+
+            cbAuthor.Items.Clear();
+            cbCarName.Items.Clear();
+
+            foreach (var report in _repository.GetAll()) {
+                _carreports.Add(report);
+                SetCbAuthor(report.Author);
+                SetCbCarName(report.CarName);
             }
         }
 
