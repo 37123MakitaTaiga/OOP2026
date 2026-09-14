@@ -200,7 +200,7 @@
             dgvRecords.Name = "dgvRecords";
             dgvRecords.ReadOnly = true;
             dgvRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvRecords.Size = new Size(643, 186);
+            dgvRecords.Size = new Size(742, 186);
             dgvRecords.TabIndex = 3;
             dgvRecords.SelectionChanged += dgvRecords_SelectionChanged;
             // 
@@ -218,7 +218,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Yu Gothic UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 128);
-            label5.Location = new Point(489, 46);
+            label5.Location = new Point(561, 44);
             label5.Name = "label5";
             label5.Size = new Size(55, 30);
             label5.TabIndex = 0;
@@ -229,7 +229,7 @@
             tbReport.Location = new Point(105, 281);
             tbReport.Multiline = true;
             tbReport.Name = "tbReport";
-            tbReport.Size = new Size(353, 125);
+            tbReport.Size = new Size(415, 125);
             tbReport.TabIndex = 4;
             // 
             // btNewInput
@@ -266,7 +266,7 @@
             // btPicOpen
             // 
             btPicOpen.BackColor = Color.Orange;
-            btPicOpen.Location = new Point(556, 41);
+            btPicOpen.Location = new Point(634, 44);
             btPicOpen.Name = "btPicOpen";
             btPicOpen.Size = new Size(93, 34);
             btPicOpen.TabIndex = 6;
@@ -277,7 +277,7 @@
             // btDeletePictuer
             // 
             btDeletePictuer.BackColor = Color.Salmon;
-            btDeletePictuer.Location = new Point(655, 42);
+            btDeletePictuer.Location = new Point(733, 45);
             btDeletePictuer.Name = "btDeletePictuer";
             btDeletePictuer.Size = new Size(93, 34);
             btDeletePictuer.TabIndex = 6;
@@ -288,7 +288,7 @@
             // btAddRecord
             // 
             btAddRecord.BackColor = SystemColors.ActiveCaption;
-            btAddRecord.Location = new Point(489, 336);
+            btAddRecord.Location = new Point(557, 339);
             btAddRecord.Name = "btAddRecord";
             btAddRecord.Size = new Size(97, 70);
             btAddRecord.TabIndex = 7;
@@ -299,9 +299,9 @@
             // btModifyRecord
             // 
             btModifyRecord.BackColor = Color.OldLace;
-            btModifyRecord.Location = new Point(592, 336);
+            btModifyRecord.Location = new Point(662, 339);
             btModifyRecord.Name = "btModifyRecord";
-            btModifyRecord.Size = new Size(97, 70);
+            btModifyRecord.Size = new Size(94, 70);
             btModifyRecord.TabIndex = 7;
             btModifyRecord.Text = "修正";
             btModifyRecord.UseVisualStyleBackColor = false;
@@ -310,9 +310,9 @@
             // btDeleteRecord
             // 
             btDeleteRecord.BackColor = Color.Salmon;
-            btDeleteRecord.Location = new Point(695, 336);
+            btDeleteRecord.Location = new Point(762, 339);
             btDeleteRecord.Name = "btDeleteRecord";
-            btDeleteRecord.Size = new Size(56, 70);
+            btDeleteRecord.Size = new Size(85, 70);
             btDeleteRecord.TabIndex = 7;
             btDeleteRecord.Text = "削除";
             btDeleteRecord.UseVisualStyleBackColor = false;
@@ -321,9 +321,9 @@
             // pbPicture
             // 
             pbPicture.BorderStyle = BorderStyle.FixedSingle;
-            pbPicture.Location = new Point(489, 84);
+            pbPicture.Location = new Point(557, 84);
             pbPicture.Name = "pbPicture";
-            pbPicture.Size = new Size(259, 246);
+            pbPicture.Size = new Size(290, 246);
             pbPicture.SizeMode = PictureBoxSizeMode.StretchImage;
             pbPicture.TabIndex = 8;
             pbPicture.TabStop = false;
@@ -351,7 +351,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { ファイルFToolStripMenuItem, ヘルプHToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(809, 24);
+            menuStrip1.Size = new Size(919, 24);
             menuStrip1.TabIndex = 10;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -365,38 +365,37 @@
             // 開くToolStripMenuItem
             // 
             開くToolStripMenuItem.Name = "開くToolStripMenuItem";
-            開くToolStripMenuItem.Size = new Size(180, 22);
+            開くToolStripMenuItem.Size = new Size(119, 22);
             開くToolStripMenuItem.Text = "開く...";
-            開くToolStripMenuItem.Click += 開くToolStripMenuItem_Click;
             // 
             // 保存ToolStripMenuItem
             // 
             保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
-            保存ToolStripMenuItem.Size = new Size(180, 22);
+            保存ToolStripMenuItem.Size = new Size(119, 22);
             保存ToolStripMenuItem.Text = "保存...";
-            保存ToolStripMenuItem.Click += 保存ToolStripMenuItem_Click_1;
+
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(177, 6);
+            toolStripSeparator2.Size = new Size(116, 6);
             // 
             // 色設定ToolStripMenuItem
             // 
             色設定ToolStripMenuItem.Name = "色設定ToolStripMenuItem";
-            色設定ToolStripMenuItem.Size = new Size(180, 22);
+            色設定ToolStripMenuItem.Size = new Size(119, 22);
             色設定ToolStripMenuItem.Text = "色設定...";
             色設定ToolStripMenuItem.Click += 色設定ToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(177, 6);
+            toolStripSeparator1.Size = new Size(116, 6);
             // 
             // 終了ToolStripMenuItem
             // 
             終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
-            終了ToolStripMenuItem.Size = new Size(180, 22);
+            終了ToolStripMenuItem.Size = new Size(119, 22);
             終了ToolStripMenuItem.Text = "終了(&X)";
             終了ToolStripMenuItem.Click += 終了ToolStripMenuItem_Click;
             // 
@@ -418,7 +417,7 @@
             statusStrip1.Items.AddRange(new ToolStripItem[] { tsslbMessage });
             statusStrip1.Location = new Point(0, 618);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(809, 22);
+            statusStrip1.Size = new Size(919, 22);
             statusStrip1.SizingGrip = false;
             statusStrip1.TabIndex = 11;
             statusStrip1.Text = "statusStrip1";
@@ -440,7 +439,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(809, 640);
+            ClientSize = new Size(919, 640);
             Controls.Add(statusStrip1);
             Controls.Add(cbAuthor);
             Controls.Add(cbCarName);

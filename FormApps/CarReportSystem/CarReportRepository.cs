@@ -2,7 +2,6 @@ using CarReportSystem;
 using Microsoft.Data.Sqlite;
 using System.Drawing.Imaging;
 using System.Globalization;
-using static CarReportSystem.CarReport;
 namespace SQLiteProductSample;
 
 // Productsテーブルに対するDB操作をまとめたクラス
@@ -95,7 +94,7 @@ public class CarReportRepository {
             """
             UPDATE CarReports
             SET Date = $date, Author = $author, Maker = $maker,
-                CarName = $carName, Report = $report, Picture = $Picture
+                CarName = $carName, Report = $report, Picture = $picture
             WHERE Id = $id;
             """;
 
