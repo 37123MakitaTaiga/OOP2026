@@ -63,7 +63,7 @@ namespace CarReportSystem {
 
             dgvRecords.CurrentRow.Selected = false;
             InputItemsUpdate();
-           
+
         }
         private MakerGroup GetRadioButtonMaker() {
             if (rbToyota.Checked)
@@ -97,7 +97,7 @@ namespace CarReportSystem {
             tbReport.Text = string.Empty;
             dtpDate.Value = DateTime.Today;
             pbPicture.Image = null;
-            
+
             dgvRecords.CurrentRow.Selected = false;
         }
 
@@ -142,7 +142,7 @@ namespace CarReportSystem {
                 || (!dgvRecords.CurrentRow.Selected)) return;
 
             //削除したいインデックスを指定してリストから削除
-            if(dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport) {
+            if (dgvRecords.CurrentRow?.DataBoundItem is not CarReport carReport) {
                 tsslbMessage.Text = "削除するレポートを選択してください";
                 return;
             }
@@ -150,7 +150,7 @@ namespace CarReportSystem {
             _repository.Delete(carReport.Id);
             InuputItemsAllClear();
             _carreports.Remove(carReport);
-            
+
         }
 
         private void btModifyRecord_Click(object sender, EventArgs e) {
@@ -170,33 +170,21 @@ namespace CarReportSystem {
                 return;
             }
 
-            try {
-                //選択中の商品のオブジェクトのデータを更新する
-                carReport.Date = dtpDate.Value.Date;
-                carReport.Author = cbAuthor.Text.Trim();
-                carReport.Maker = GetRadioButtonMaker();
-                carReport.CarName = cbCarName.Text.Trim();
-                carReport.Report = tbReport.Text;
-                carReport.Picture = pbPicture.Image;
+            //選択中の商品のオブジェクトのデータを更新する
+            carReport.Date = dtpDate.Value.Date;
+            carReport.Author = cbAuthor.Text.Trim();
+            carReport.Maker = GetRadioButtonMaker();
+            carReport.CarName = cbCarName.Text.Trim();
+            carReport.Report = tbReport.Text;
+            carReport.Picture = pbPicture.Image;
 
-                _repository.Update(carReport);
+            _repository.Update(carReport);
 
-                ReloadCarReports();
-            }
-            catch {
-            }
-            //カーレポート管理用リストに該当する要素のデータを書き換える
-            _carreports[dgvRecords.CurrentRow.Index].Date = dtpDate.Value.Date;
-            _carreports[dgvRecords.CurrentRow.Index].Author = cbAuthor.Text.Trim();
-            _carreports[dgvRecords.CurrentRow.Index].Maker = GetRadioButtonMaker();
-            _carreports[dgvRecords.CurrentRow.Index].CarName = cbCarName.Text.Trim();
-            _carreports[dgvRecords.CurrentRow.Index].Report = tbReport.Text;
-            _carreports[dgvRecords.CurrentRow.Index].Picture = pbPicture.Image;
+            ReloadCarReports();
 
             SetCbAuthor(cbAuthor.Text.Trim());
             SetCbCarName(cbCarName.Text.Trim());
 
-            dgvRecords.Refresh();   //データグリッドビューの更新
             tsslbMessage.Text = "レポートを修正しました";
         }
 
@@ -240,7 +228,7 @@ namespace CarReportSystem {
             Settings.Instance.Save();
         }
 
-       
+
 
         private void ReloadCarReports() {
             _carreports.Clear();
@@ -255,6 +243,10 @@ namespace CarReportSystem {
             }
         }
 
+        private void このアプリについてToolStripMenuItem_Click(object sender, EventArgs e) {
+            var fm = new Form();
+            fm.Show();
+        }
     }
 }
 
