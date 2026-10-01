@@ -6,15 +6,19 @@
 @model List<MvcBasicSample.Models.Product>;
 
 @{
-    ViewData["Titel"] = "商品情報";    //タブ用のタイトル
-    string productName = "ノート";
-    int price = 250;
+    ViewData["Titel"] = "合計金額";    //タブ用のタイトル
+    string productName1 = "ノート";
+    int price1 = 250;
+    string productName2 = "ペン";
+    int price2 = 150;
+    int total = price1 + price2;
 }
 
 <h1>商品情報</h1> @*画面内の見出し*@
 　　@*一覧から１件ずつ取り出す*@
-<p>商品名：@productName</p>
-<p>価格：@price 円</p>
+<p>@productName1：@price1 円</p>
+<p>@productName2：@price2 円</p>
+<p>合計：@total 円</p>
 
 
 
