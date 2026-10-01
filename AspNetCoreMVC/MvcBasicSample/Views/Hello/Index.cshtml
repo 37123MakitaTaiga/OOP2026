@@ -7,18 +7,14 @@
 
 @{
     ViewData["Titel"] = "商品情報";    //タブ用のタイトル
-    int sum = 0;
+    string productName = "ノート";
+    int price = 250;
 }
 
 <h1>商品情報</h1> @*画面内の見出し*@
 　　@*一覧から１件ずつ取り出す*@
-<ul>@foreach (var product in Model)
-    {
-        <li>商品名：@product.Name @product.Price 円</li>
-        sum = sum + product.Price; 
-    }
-    <n>合計金額：@(sum)円</n>    
-</ul>
+<p>商品名：@productName</p>
+<p>価格：@price 円</p>
 
 
 
