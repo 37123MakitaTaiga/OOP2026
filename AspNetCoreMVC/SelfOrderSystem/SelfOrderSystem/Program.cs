@@ -14,12 +14,22 @@ builder.Services.AddDbContext<AppDbContext>(
 
 var app = builder.Build();
 
+//’Ç‰Á
+// var app = builder.Build(); ‚ÌŒã‚Ö’Ç‰Á‚·‚é 
+if (app.Environment.IsDevelopment()) {
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await SeedData.InitializeAsync(db);
+}
+/////////
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment()) {
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

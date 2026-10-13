@@ -1,17 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SelfOrderSystem.Models;
 
-namespace SelfOrderSystem.Data {
-    public class AppDbContext : DbContext{
+namespace SelfOrderSystem.Data;
+public class AppDbContext : DbContext {
 
-        public AppDbContext(DbContextOptions<AppDbContext> options)
-        : base(options) { //受け取った設定を親クラスへ渡す
-        }
-
-        //CategoriesテーブルをCategory型として問い合わせるためのプロパティ
-        public DbSet<Category> Categories => Set<Category>();   //カテゴリ
-
-        //ProductsテーブルをProduct型として問い合わせるためのプロパティ
-        public DbSet<Product> Products => Set<Product>();       //商品
+    public AppDbContext(DbContextOptions<AppDbContext> options)
+    : base(options) { //受け取った設定を親クラスへ渡す
     }
+
+    //CategoriesテーブルをCategory型として問い合わせるためのプロパティ
+    public DbSet<Category> Categories => Set<Category>();   //カテゴリ
+
+    //ProductsテーブルをProduct型として問い合わせるためのプロパティ
+    public DbSet<Product> Products => Set<Product>();       //商品
 }
+
