@@ -6,8 +6,13 @@
         xmlns:local="clr-namespace:Exercise01_WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <StackPanel Orientation="Vertical">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Button Content="ファイル選択" Click="Button_Click"/>
-        <TextBox x:Name="TextArea" TextWrapping="Wrap" Height="400"/>
-    </StackPanel>
+        <TextBox x:Name="TextArea" Grid.Row="1" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto"
+/>
+    </Grid>
 </Window>

@@ -36,14 +36,13 @@ namespace Exercise01_WPF {
             var sb = new StringBuilder();
 
             //ここに非同期でテキストファイルを読み込む処理を記述する
-            var sr = new StringBuilder(fileName);
-            using (StreamReader reader = new StreamReader(sr.ToString())) {
-                string line;
-                while ((line = await reader.ReadLineAsync()) != null) {
-                    sb.AppendLine(line);
-                }
-                return sb.ToString();
+            using var sr = new StreamReader(fileName);
+
+            string? line;
+            while ((line = await sr.ReadLineAsync()) != null) {
+                sb.AppendLine(line);
             }
+            return sb.ToString();
         }
     }
 }
