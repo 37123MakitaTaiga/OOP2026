@@ -19,11 +19,7 @@ public class LineCounterProcessor : TextProcessor {
 
 
     protected override void Execute(string line) {
-        foreach (var w in line.Split(' ')) {
-            if (w == _word) {
-                _count++;
-            }
-        }
+        _count += line.Split(_word).Length - 1;
     }
 
     protected override void Terminate() =>
