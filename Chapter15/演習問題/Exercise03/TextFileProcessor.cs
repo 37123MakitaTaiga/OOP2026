@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Exercise03 {
+    internal class TextFileProcessor {
+        private ITextFileService _service;
+
+        public TextFileProcessor(ITextFileService service) {
+            _service = service;
+        }
+
+        public void Run(string fileName) {
+            _service.Initialize(fileName);
+            int count = 0;
+            var lines = File.ReadLines(fileName);
+            foreach(var line in lines) {
+                _service.Execute(line);
+                if (++count >= 20)
+                    break;
+            }
+            _service.Terminate();
+        }
+
+    }
+}
