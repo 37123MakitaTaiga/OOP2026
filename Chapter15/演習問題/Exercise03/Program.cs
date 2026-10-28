@@ -2,5 +2,4 @@
 
 var service = new Take20Processor();
 var processor = new TextFileProcessor(service);
-Console.Write("パスの入力：");
-processor.Run(Console.ReadLine());
+processor.Run(@"枕草子.txt");
