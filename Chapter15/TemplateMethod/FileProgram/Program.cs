@@ -1,27 +1,19 @@
-﻿using TextFileProcessor;
+﻿using System.Text.RegularExpressions;
+using TextFileProcessor;
 
 
-string path = @"C:\Users\infosys\source\repos\OOP2026\Chapter14\Section05\Program.cs";
+string path = @"C:\Users\infosys\Documents\２０２６年１０月２８日.txt";
 TextProcessor.Run<LineCounterProcessor>(path);
 
 
 public class LineCounterProcessor : TextProcessor {
 
-    private int _count = 0;
-    private string _word = "";
-
-
-    protected override void Initialize(string fname) {
-        _count = 0;
-        Console.Write("カウントしたい単語：");
-        _word = Console.ReadLine();
-    }
-
-
     protected override void Execute(string line) {
-        _count += line.Split(_word).Length - 1;
-    }
+        string converted = Regex.Replace(
+            line,
+            "[０-９]",
+            m => ((char)(m.Value[0] - '０' + '0')).ToString());
 
-    protected override void Terminate() =>
-        Console.WriteLine($"「{_word} 」は{_count}つ出現します");
+        Console.WriteLine(converted);
+    }
 }

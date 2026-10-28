@@ -33,3 +33,17 @@ public class YardConverter : ConverterBase {
     public override string UnitName => "ヤード";
 }
 
+public class MileConverter : ConverterBase {
+    public override bool IsMyUnit(string name) =>
+        name.Equals("mile", StringComparison.CurrentCultureIgnoreCase) || name == UnitName;
+    protected override double Ratio => 1609.34;
+    public override string UnitName => "マイル";
+}
+
+public class KiloMeterConverter : ConverterBase {
+    public override bool IsMyUnit(string name) =>
+        name.Equals("kilometer", StringComparison.CurrentCultureIgnoreCase) || name == UnitName;
+    protected override double Ratio => 1000.0;
+    public override string UnitName => "キロメートル";
+}
+
