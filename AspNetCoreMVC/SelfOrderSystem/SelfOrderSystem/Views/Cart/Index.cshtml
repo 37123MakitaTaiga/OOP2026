@@ -7,7 +7,7 @@
 
 @{
     ViewData["Title"] = "カート";
-    var total = Model.Sum(x => x.LineTotal);                        // 画面表示用に合計金額を計算する
+    var total = Model.Sum(x => x.LineTotal);   // 画面表示用に合計金額を計算する
 }
 
 <h1 class="h3 mb-3">カート</h1>
@@ -31,7 +31,7 @@
 
                 <div class="d-flex gap-2 mt-2">
                     @* 数量変更はproductIdとquantityをUpdateへPOSTする *@ 
-                                    <form asp-action="Update" method="post" class="d-flex gap-2">
+                    <form asp-action="Update" method="post" class="d-flex gap-2">
                         <input type="hidden" name="productId" value="@item.ProductId" />
                         <input class="form-control" type="number" name="quantity"
                                min="1" max="99" value="@item.Quantity" />
@@ -46,6 +46,13 @@
                 </div>
             </div>
         </div>
+    }
+
+    @if (Model.Any()) {
+        <a class="btn btn-success btn-lg w-100"
+           asp-controller="Orders" asp-action="Checkout">
+            注文内容を確認する
+        </a>
     }
 
     <div class="text-end fs-4 fw-bold my-3">
