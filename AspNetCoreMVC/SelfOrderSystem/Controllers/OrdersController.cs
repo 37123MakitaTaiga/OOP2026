@@ -4,7 +4,10 @@ using SelfOrderSystem.Data;
 using SelfOrderSystem.Models;
 using SelfOrderSystem.Services;
 using SelfOrderSystem.ViewModels;
-using System.Numerics;
+
+// ファイルの先頭に追加 
+using Microsoft.AspNetCore.SignalR;
+using SelfOrderSystem.Hubs;
 
 namespace SelfOrderSystem.Controllers;
 

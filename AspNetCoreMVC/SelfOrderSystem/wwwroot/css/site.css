@@ -1,22 +1,228 @@
+:root {
+    --red: #DA291C;
+    --blood: #A6190F;
+    --purple: #DA291C;
+    --gold: #FFC72C;
+    --cyan: #FFC72C;
+    --pink: #FFBC0D;
+    --black: #FFFFFF;
+}
+
+/* ================= BASE ================= */
+
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+    background: #FFFFFF;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    html {
+        font-size: 16px;
+    }
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    color: #292929;
+    font-weight: 700;
+    background: linear-gradient(135deg, #fff9e8, #ffffff, #fff2d1);
+}
+
+/* ================= HEADINGS ================= */
+
+h1, h2, h3 {
+    color: #DA291C;
+    font-weight: 1000;
+    letter-spacing: 1px;
+    text-shadow: 1px 2px 0 rgba(255,199,44,.35);
+}
+
+/* ================= BUTTON ================= */
+
+.btn {
+    position: relative;
+    overflow: hidden;
+    color: white !important;
+    font-weight: 900;
+    letter-spacing: 1px;
+    border: 2px solid #DA291C !important;
+    border-radius: 30px !important;
+    background: linear-gradient(135deg, #DA291C, #B51F16) !important;
+    box-shadow: 0 4px 0 #8F160E, 0 5px 12px rgba(218,41,28,.25);
+    transition: .2s ease;
+}
+
+    .btn:hover {
+        color: #292929 !important;
+        background: linear-gradient(135deg, #FFC72C, #FFBC0D) !important;
+        border-color: #FFC72C !important;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 0 #D99D00, 0 8px 18px rgba(255,199,44,.4);
+    }
+
+    .btn:active {
+        transform: translateY(2px);
+        box-shadow: 0 1px 0 #8F160E;
+    }
+
+/* ================= CARD ================= */
+
+.card {
+    color: #292929;
+    background: #FFFFFF;
+    border: 2px solid #FFC72C;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    transition: .25s ease;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        border-color: #DA291C;
+        box-shadow: 0 10px 25px rgba(218,41,28,.15);
+    }
+
+/* ================= INPUT ================= */
+
+.form-control,
+.form-select {
+    color: #292929 !important;
+    background: #FFFFFF !important;
+    border: 2px solid #E5E5E5 !important;
+    border-radius: 10px !important;
+    box-shadow: none;
+}
+
+    .form-control::placeholder {
+        color: #999999;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        color: #292929 !important;
+        background: #FFFFFF !important;
+        border-color: #DA291C !important;
+        box-shadow: 0 0 0 3px rgba(218,41,28,.15) !important;
+    }
+
+/* ================= LINKS ================= */
+
+a {
+    color: #DA291C;
+    font-weight: 800;
+    text-decoration: none;
+    transition: .2s;
+}
+
+    a:hover {
+        color: #A6190F;
+        text-decoration: underline;
+    }
+
+/* ================= TABLE ================= */
+
+.table {
+    color: #292929;
+    border-color: #EEEEEE;
+    background: #FFFFFF;
+}
+
+    .table thead {
+        color: #292929;
+        background: #FFC72C;
+        font-weight: 900;
+    }
+
+    .table tbody tr:hover {
+        background: #FFF5D9;
+    }
+
+/* ================= CHECKBOX ================= */
+
+.form-check-input {
+    background-color: #FFFFFF;
+    border: 2px solid #DA291C;
+}
+
+    .form-check-input:checked {
+        background-color: #DA291C;
+        border-color: #DA291C;
+        box-shadow: 0 0 0 3px rgba(218,41,28,.15);
+    }
+
+    /* ================= FOCUS ================= */
+
+    .btn:focus,
+    .btn:active:focus,
+    .btn-link.nav-link:focus,
+    .form-control:focus,
+    .form-check-input:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255,199,44,.5);
+    }
+
+/* ================= SCROLLBAR ================= */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #FFF5D9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#DA291C, #FFC72C);
+    border-radius: 10px;
+}
+
+/* ================= SELECTION ================= */
+
+::selection {
+    color: #292929;
+    background: #FFC72C;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 767px) {
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* ================= REDUCED MOTION ================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* ================= PRODUCT PHOTO ================= */
+
+.so-product-photo {
+    display: block;
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    background: #FFF5D9;
+    border-radius: 12px;
+}
+
+/* ================= EMPTY PRODUCT PHOTO ================= */
+
+.so-product-photo--empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888888;
+    font-size: 0.95rem;
+    background: #FFF5D9;
 }
