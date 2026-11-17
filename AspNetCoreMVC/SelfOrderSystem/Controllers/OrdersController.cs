@@ -58,31 +58,14 @@ public class OrdersController : Controller {
             model.Items = cartItems;
             return View("Checkout", model);
         }
-        _cart.Clear();                         // 保存成功後だけカートを消す 
-        return RedirectToAction(nameof(Complete),
-            new { id = result.PublicId });     // 完了画面へ移動 
+        //注文成功時のPublicIDをSessionに保存
+        HttpContext.Session.SetString(
+                                "LastOrderPublicId",
+                                result.PublicId!.Value.ToString());
 
-        var order = new Order {
-            PublicId = Guid.NewGuid(),
-            TableNumber = model.TableNumber,
-            OrderedAtUtc = DateTimeOffset.UtcNow,
-            Status = OrderStatus.New
-        };
-        foreach (var item in cartItems) {
-            var product = products[item.ProductId];
-            order.Items.Add(new OrderItem {
-                ProductId = product.Id,
-                Quantity = item.Quantity,
-                UnitPrice = product.Price // 注文確定時のDB価格を保存 
-            });
-        }
-
-
-        _db.Orders.Add(order);           // 注文と明細を登録対象にする 
-        await _db.SaveChangesAsync();   // DB保存の完了を待つ 
-        _cart.Clear();                  // 保存成功後にカートを空にする 
-        return RedirectToAction(nameof(Complete),
-            new { id = order.PublicId });
+        _cart.Clear(); // 保存成功後だけカートを空にする
+                       
+        return RedirectToAction(nameof(Complete),new { id = result.PublicId });     // 完了画面へ移動 
     }
     [HttpGet]
     public async Task<IActionResult> Complete(Guid id) {
@@ -102,4 +85,17 @@ public class OrdersController : Controller {
             .ThenInclude(i => i.Product)
             .SingleOrDefaultAsync(o => o.PublicId == publicId);
     }
+
+    //同じブラウザで最後に確定した注文を開く
+    public IActionResult MyOrder() {
+        var publicId = HttpContext.Session.GetString("LastOrderPublicId");
+
+        if(!Guid.TryParse(publicId, out var id)) {
+            return RedirectToAction("Index", "Menu");
+        }
+        return RedirectToAction(nameof(Status), new { id });
+    }
+
+
+
 }
