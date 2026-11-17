@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SelfOrderSystem.Data;
-using SelfOrderSystem.VIewModels;
 using SelfOrderSystem.Services;
+using SelfOrderSystem.ViewModels;
 
 namespace SelfOrderSystem.Controllers;
 public class MenuController : Controller{
