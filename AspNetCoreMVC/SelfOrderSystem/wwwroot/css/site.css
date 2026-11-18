@@ -1,11 +1,15 @@
+/* =========================================================
+   和風旅館・料亭デザイン
+========================================================= */
+
 :root {
-    --red: #DA291C;
-    --blood: #A6190F;
-    --purple: #DA291C;
-    --gold: #FFC72C;
-    --cyan: #FFC72C;
-    --pink: #FFBC0D;
-    --black: #FFFFFF;
+    --red: #7A3B2E;
+    --blood: #5A2B22;
+    --purple: #6B4F3A;
+    --gold: #C9A063;
+    --cyan: #8F9C7B;
+    --pink: #E8DCC6;
+    --black: #2F2A24;
 }
 
 /* ================= BASE ================= */
@@ -14,7 +18,7 @@ html {
     font-size: 14px;
     position: relative;
     min-height: 100%;
-    background: #FFFFFF;
+    background: #F8F3E8;
 }
 
 @media (min-width: 768px) {
@@ -25,131 +29,118 @@ html {
 
 body {
     margin-bottom: 60px;
-    color: #292929;
+    color: var(--black);
     font-weight: 700;
-    background: linear-gradient(135deg, #fff9e8, #ffffff, #fff2d1);
+    background: linear-gradient( 180deg, #F8F3E8 0%, #F3EBDD 100% );
 }
 
 /* ================= HEADINGS ================= */
 
-h1, h2, h3 {
-    color: #DA291C;
-    font-weight: 1000;
-    letter-spacing: 1px;
-    text-shadow: 1px 2px 0 rgba(255,199,44,.35);
+h1,
+h2,
+h3 {
+    color: var(--red);
+    font-weight: 700;
+    letter-spacing: .15em;
+    text-shadow: none;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: .3rem;
 }
 
 /* ================= BUTTON ================= */
 
 .btn {
-    position: relative;
-    overflow: hidden;
-    color: white !important;
-    font-weight: 900;
-    letter-spacing: 1px;
-    border: 2px solid #DA291C !important;
-    border-radius: 30px !important;
-    background: linear-gradient(135deg, #DA291C, #B51F16) !important;
-    box-shadow: 0 4px 0 #8F160E, 0 5px 12px rgba(218,41,28,.25);
+    color: #fff !important;
+    font-weight: 700;
+    border: 1px solid var(--blood) !important;
+    border-radius: 8px !important;
+    background: linear-gradient( 180deg, #8D5A3B, #6B432D ) !important;
+    box-shadow: 0 3px 8px rgba(0,0,0,.15);
     transition: .2s ease;
 }
 
     .btn:hover {
-        color: #292929 !important;
-        background: linear-gradient(135deg, #FFC72C, #FFBC0D) !important;
-        border-color: #FFC72C !important;
-        transform: translateY(-3px);
-        box-shadow: 0 5px 0 #D99D00, 0 8px 18px rgba(255,199,44,.4);
+        color: white !important;
+        background: linear-gradient( 180deg, #A36C44, #7A5034 ) !important;
+        border-color: var(--gold) !important;
+        transform: translateY(-2px);
     }
 
     .btn:active {
-        transform: translateY(2px);
-        box-shadow: 0 1px 0 #8F160E;
+        transform: translateY(1px);
     }
 
 /* ================= CARD ================= */
 
 .card {
-    color: #292929;
-    background: #FFFFFF;
-    border: 2px solid #FFC72C;
-    border-radius: 16px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    color: var(--black);
+    background: #FFFDF8;
+    border: 1px solid #D8C9AE;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
     transition: .25s ease;
 }
 
     .card:hover {
-        transform: translateY(-5px);
-        border-color: #DA291C;
-        box-shadow: 0 10px 25px rgba(218,41,28,.15);
+        transform: translateY(-3px);
+        border-color: var(--gold);
     }
 
 /* ================= INPUT ================= */
 
 .form-control,
 .form-select {
-    color: #292929 !important;
-    background: #FFFFFF !important;
-    border: 2px solid #E5E5E5 !important;
-    border-radius: 10px !important;
-    box-shadow: none;
+    color: var(--black) !important;
+    background: #FFFDF8 !important;
+    border: 1px solid #D8C9AE !important;
+    border-radius: 8px !important;
 }
-
-    .form-control::placeholder {
-        color: #999999;
-    }
 
     .form-control:focus,
     .form-select:focus {
-        color: #292929 !important;
-        background: #FFFFFF !important;
-        border-color: #DA291C !important;
-        box-shadow: 0 0 0 3px rgba(218,41,28,.15) !important;
+        border-color: var(--gold) !important;
+        box-shadow: 0 0 0 3px rgba(201,160,99,.25) !important;
     }
 
 /* ================= LINKS ================= */
 
 a {
-    color: #DA291C;
-    font-weight: 800;
+    color: var(--red);
+    font-weight: 700;
     text-decoration: none;
-    transition: .2s;
 }
 
     a:hover {
-        color: #A6190F;
+        color: var(--blood);
         text-decoration: underline;
     }
 
 /* ================= TABLE ================= */
 
 .table {
-    color: #292929;
-    border-color: #EEEEEE;
-    background: #FFFFFF;
+    background: #FFFDF8;
 }
 
     .table thead {
-        color: #292929;
-        background: #FFC72C;
-        font-weight: 900;
+        background: #E8DCC6;
+        color: var(--black);
+        font-weight: 700;
     }
 
     .table tbody tr:hover {
-        background: #FFF5D9;
+        background: #F5EFE4;
     }
 
 /* ================= CHECKBOX ================= */
 
 .form-check-input {
-    background-color: #FFFFFF;
-    border: 2px solid #DA291C;
+    background-color: white;
+    border: 2px solid var(--red);
 }
 
     .form-check-input:checked {
-        background-color: #DA291C;
-        border-color: #DA291C;
-        box-shadow: 0 0 0 3px rgba(218,41,28,.15);
+        background-color: var(--red);
+        border-color: var(--red);
     }
 
     /* ================= FOCUS ================= */
@@ -160,7 +151,7 @@ a {
     .form-control:focus,
     .form-check-input:focus {
         outline: none;
-        box-shadow: 0 0 0 3px rgba(255,199,44,.5);
+        box-shadow: 0 0 0 3px rgba(201,160,99,.35);
     }
 
 /* ================= SCROLLBAR ================= */
@@ -170,24 +161,25 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-    background: #FFF5D9;
+    background: #F3EBDD;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(#DA291C, #FFC72C);
+    background: linear-gradient( var(--red), var(--gold) );
     border-radius: 10px;
 }
 
 /* ================= SELECTION ================= */
 
 ::selection {
-    color: #292929;
-    background: #FFC72C;
+    background: var(--gold);
+    color: var(--black);
 }
 
 /* ================= MOBILE ================= */
 
 @media (max-width: 767px) {
+
     .btn {
         width: 100%;
         margin-bottom: 10px;
@@ -197,6 +189,7 @@ a {
 /* ================= REDUCED MOTION ================= */
 
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -212,19 +205,113 @@ a {
     width: 100%;
     height: 190px;
     object-fit: cover;
-    background: #FFF5D9;
+    background: #F5EFE4;
     border-radius: 12px;
 }
 
-/* ================= EMPTY PRODUCT PHOTO ================= */
+/* ================= EMPTY PHOTO ================= */
 
 .so-product-photo--empty {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #888888;
-    font-size: 0.95rem;
-    background: #FFF5D9;
+    color: #777;
+    font-size: .95rem;
+    background: #F5EFE4;
+}
+
+/* =========================================================
+   カートを超見やすくする
+========================================================= */
+
+.cart-summary {
+    position: sticky;
+    bottom: 20px;
+    z-index: 1000;
+    background: linear-gradient( 135deg, #7A3B2E, #5A2B22 );
+    color: white;
+    border: 3px solid var(--gold);
+    border-radius: 16px;
+    padding: 16px 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.25);
+}
+
+.cart-summary-count {
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+.cart-summary-total {
+    color: #FFE3A9;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.cart-summary .btn {
+    min-width: 160px;
+}
+
+/* =========================================================
+   商品価格
+========================================================= */
+
+.product-price {
+    color: #B22222;
+    font-size: 1.3rem;
+    font-weight: 900;
+}
+
+/* =========================================================
+   商品名
+========================================================= */
+
+.product-name {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--black);
+}
+
+/* =========================================================
+   人気商品バッジ
+========================================================= */
+
+.badge-popular {
+    background: linear-gradient( 135deg, #C9A063, #A17D45 );
+    color: white;
+    padding: 4px 10px;
+    border-radius: 30px;
+    font-size: .8rem;
+    font-weight: 700;
+}
+
+/* =========================================================
+   カート商品数表示
+========================================================= */
+
+.cart-count-badge {
+    background: #B22222;
+    color: white;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: .85rem;
+    font-weight: 900;
+}
+
+.cart-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed #d0c2aa;
+}
+
+    .cart-item-row strong {
+        color: #7A3B2E;
+    }
+
+.so-cart-sidebar {
+    position: sticky;
+    top: 20px;
 }
 
 @media (min-width: 992px) {
