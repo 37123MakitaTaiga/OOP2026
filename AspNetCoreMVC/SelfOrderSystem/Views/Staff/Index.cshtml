@@ -59,8 +59,11 @@
             @foreach (var order in Model) {
                 // 注文全体の合計金額
                 var total = order.Items.Sum(
-                i => i.UnitPrice * i.Quantity
-                );
+                i => i.UnitPrice * i.Quantity);
+
+                var japanTime = TimeZoneInfo.ConvertTime(
+                    order.OrderedAtUtc,
+                    TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time"));
 
                 // 注文状態に応じたCSSクラス
                 var statusClass = order.Status switch {
@@ -88,7 +91,7 @@
 
                                 @* 日付表示の修正版 *@
                                 <time class="staff-order-time">
-                                    @order.OrderedAtUtc.ToLocalTime().ToString("yyyy/MM/dd HH:mm")
+                                    @japanTime.ToString("yyyy/MM/dd HH:mm")
                                 </time>
 
                             </div>
@@ -174,22 +177,27 @@
 
 @section Scripts {
     @* LibMan で追加したSignalRのJavaScript *@ 
-    <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
+        <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
     <script>
 
         // Hubとの接続を作る
         const staffConnection = new signalR.HubConnectionBuilder()
-        .withUrl("/staffOrdersHub")
-        .withAutomaticReconnect()
-        .build();
+                                     .withUrl("/staffOrdersHub")
+                                     .withAutomaticReconnect()
+                                     .build();
         // 通知を受けたら最新の注文一覧を読み直す
         staffConnection.on("OrdersChanged", () => {
         window.location.reload();
         });
-        // 再接続後も表示内容を更新する
-        staffConnection.onreconnected(() => window.location.reload());
-        staffConnection.start().catch(error => {
-        console.error("店舗 SignalR 接続エラー", error);
+        // 変更後：再接続したらグループに再参加
+        staffConnection.onreconnected(async () => {
+            await staffConnection.invoke("JoinStaff");
+            window.location.reload();
         });
+
+                // 変更後：接続成功後にスタッフグループへ参加
+        staffConnection.start()
+            .then(() => staffConnection.invoke("JoinStaff"))
+            .catch(error => console.error("店舗 SignalR 接続エラー", error));
     </script>
 }
